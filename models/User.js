@@ -36,6 +36,11 @@ User.init(
         //Must be at least eight characters long
         len: [8]
       }
+    },
+    skill_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: null
     }
   },
   {
