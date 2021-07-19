@@ -1,24 +1,32 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Comment extends Model {}
+class Job extends Model {}
 
-//-----INITIALIZE COMMENT-----//
-Comment.init(
+//-----INITIALIZE JOB-----//
+Job.init(
   {
-    //id for comment
+    //id for job
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    //coment text
-    comment_text: {
+    //job text
+    job_text: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1]
+      }
+    },
+    //price bid
+    price_bid: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      validate: {
+        isDecimal: true
       }
     },
     //user id reference
@@ -44,8 +52,8 @@ Comment.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'comment'
+    modelName: 'job'
   }
 );
 
-module.exports = Comment;
+module.exports = Job;
