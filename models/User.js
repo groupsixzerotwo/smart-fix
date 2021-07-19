@@ -2,21 +2,24 @@ const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 
-class User extends MODEL {}
+class User extends Model {}
 
+//-----INITIALIZE USER-----//
 User.init(
   {
-    //Id coloumn
+    //Id coloumn for User
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
+    //username coloumn for User
     username: {
       type: DataTypes.STRING,
       allowNull: false
     },
+    //email coloumn for User
     email: {type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -25,16 +28,18 @@ User.init(
         isEmail: true
       }
     },
+    //password coloumn for User
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        //Password must be at least eight characters long
+        //Must be at least eight characters long
         len: [8]
       }
     }
   },
   {
+    //Hashing
     hooks: {
       // set up beforeCreate lifecycle "hook" functionality
       async beforeCreate(newUserData) {
