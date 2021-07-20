@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
   })
   .then(dbServiceData => {
     if(!dbServiceData) {
-      res.status(404).json({message: 'No Service found with this id'});
+      res.status(404).json({message: 'No service found with this id'});
       return;
     }
     res.json(dbServiceData);
