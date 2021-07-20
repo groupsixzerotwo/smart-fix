@@ -37,15 +37,25 @@ User.init(
         len: [8]
       }
     },
-    skill_id: {
+    service_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      defaultValue: null
+      defaultValue: null,
+      references: {
+        model: 'service',
+        key: 'id'
+      }
     }
   },
   {
     //Hashing
     hooks: {
+      // set up beforeBulkCreate lifecycle "hook" functionality
+      async beforeBulkCreate(bulkUserData) {
+        return Promise.all(bulkUserData.map(async (userData) => {
+          userData.password = await bcrypt.hash(userData.password, 10);
+        }));
+      },
       // set up beforeCreate lifecycle "hook" functionality
       async beforeCreate(newUserData) {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
@@ -58,7 +68,6 @@ User.init(
       }
     },
     sequelize,
-    timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'user'

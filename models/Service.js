@@ -1,10 +1,10 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Skill extends Model {}
+class Service extends Model {}
 
-//-----INITIALIZE SKILL-----//
-Skill.init(
+//-----INITIALIZE SERVICE-----//
+Service.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,17 +12,18 @@ Skill.init(
       primaryKey: true,
       autoIncrement: true
     },
-    skill_type: {
+    service_type: {
       type: DataTypes.STRING,
       allowNull: false,
     }
   },
   {
     sequelize,
+    timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'post'
+    modelName: 'service'
   }
 );
 
-module.exports = Skill;
+module.exports = Service;

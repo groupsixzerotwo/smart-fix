@@ -2,8 +2,7 @@ const User = require('./User');
 const Post = require('./Post');
 const Comment = require('./Comment');
 const Job = require('./Job');
-const Skill = require('./Skill');
-const { STRING } = require('sequelize/types');
+const Service = require('./Service');
 
 //Associations post and user
 User.hasMany(Post, {
@@ -14,13 +13,13 @@ Post.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-//Associations user and skill
-User.belongs(Skill, {
-  foreignKey: 'skill_id'
+//Associations user and service
+User.belongsTo(Service, {
+  foreignKey: 'service_id'
 });
 
-Skill.hasMany(User, {
-  foreignKey: 'skill_id'
+Service.hasMany(User, {
+  foreignKey: 'service_id'
 })
 
 //Associations comments, post and user
@@ -57,4 +56,4 @@ Post.hasMany(Job, {
   foreignKey: 'post_id'
 });
 
-module.exports = { User, Post, Comment };
+module.exports = { User, Post, Comment, Job, Service };

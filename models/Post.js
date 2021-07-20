@@ -18,9 +18,14 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+    post_text: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     //Array to add media
     media: {
-      type: DataTypes.ARRAY(DataTypes.STRING)
+      allowNull: true,
+      type: DataTypes.STRING
     },
     //reference to user.id (post creator)
     user_id: {
