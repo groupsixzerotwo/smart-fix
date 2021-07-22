@@ -45,7 +45,7 @@ Job.init(
       }
     },
     //Optional to add media
-    post_media: {
+    job_media: {
       allowNull: true,
       type: DataTypes.STRING
     },
