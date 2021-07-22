@@ -45,4 +45,44 @@ router.post('/', (req, res) => {
   });
 });
 
+//-----PUT - UPDATE A SERVICE-----//
+router.put('/:id', (req, res) => {
+  Service.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbServiceData => {
+    if (!dbServiceData) {
+      res.status(404).json({message: 'No service found with that id'})
+      return;
+    }
+    res.json(dbServiceData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+//-----DELETE - DELETE A SERVICE-----//
+router.delete('/:id', (req, res) => {
+  Service.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbServiceData => {
+    if (!dbServiceData) {
+      res.status(404).json({ message: 'No service found with that id' });
+      return;
+    }
+    res.json(dbServiceData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
 module.exports = router;
