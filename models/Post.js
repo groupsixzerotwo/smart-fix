@@ -22,8 +22,8 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    //Array to add media
-    media: {
+    //Optional to add media
+    post_media: {
       allowNull: true,
       type: DataTypes.STRING
     },

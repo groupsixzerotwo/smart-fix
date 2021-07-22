@@ -39,21 +39,13 @@ Post.hasMany(Comment, {
   foreignKey: 'post_id'
 });
 
-//Associations job, post and user
+//Associations job and user
 Job.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-Job.belongsTo(Post, {
-  foreignKey: 'post_id'
-});
-
 User.hasMany(Job, {
   foreignKey: 'user_id'
-});
-
-Post.hasMany(Job, {
-  foreignKey: 'post_id'
 });
 
 module.exports = { User, Post, Comment, Job, Service };
