@@ -23,10 +23,12 @@ Assignment.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+    //Assignment start date
     start_date : {
       type: DataTypes.STRING,
       allowNull: true
     },
+    //Assignment complete date
     complete_date: {
       type: DataTypes.STRING,
       allowNull: true
@@ -49,5 +51,13 @@ Assignment.init(
         key: 'id'
       }
     }
+  },
+  {
+    sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'assignment'
   }
-)
+);
+
+module.exports = Assignment;
