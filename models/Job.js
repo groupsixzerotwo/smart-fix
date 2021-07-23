@@ -49,6 +49,15 @@ Job.init(
       allowNull: true,
       type: DataTypes.STRING
     },
+    //status of the assignment
+    status_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'status',
+        key: 'id'
+      }
+    },
     //user id reference
     user_id: {
       type: DataTypes.INTEGER,
