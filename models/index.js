@@ -61,7 +61,7 @@ Status.hasMany(Job, {
 });
 
 //Associations between job, assignment and user(service provider)
-Job.belongsTo(Assignment, {
+Job.hasOne(Assignment, {
   foreignKey: 'job_id'
 });
 
@@ -82,7 +82,7 @@ Rating.belongsTo(Job, {
   foreignKey: 'job_id'
 });
 
-Job.belongsTo(Rating, {
+Job.hasOne(Rating, {
   foreignKey: 'job_id'
 });
 
