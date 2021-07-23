@@ -1,0 +1,13 @@
+.card {
+  margin: 10px;
+}
+
+.logo {
+  margin-left: 20px;
+}
+
+.signup {
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
