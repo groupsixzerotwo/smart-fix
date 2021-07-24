@@ -33,11 +33,14 @@ Assignment.init(
       type: DataTypes.STRING,
       allowNull: true
     },
+    approved_status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true
+    },
     //job id for the assignment
     job_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
       references: {
         model: 'job',
         key: 'id'
