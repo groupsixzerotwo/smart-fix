@@ -70,7 +70,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
-//-----POST - ADD A Job-----//
+//-----POST - ADD A JOB-----//
 router.post('/', (req,res) => {
   Job.create({
     job_title: req.body.job_title,
@@ -85,6 +85,46 @@ router.post('/', (req,res) => {
   .catch(err => {
     console.log(err);
     res.status(500).json(err)
+  });
+});
+
+//-----PUT - UPDATE A JOB-----//
+router.put('/:id', (req, res) => {
+  Job.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbJobData => {
+    if (!dbJobData) {
+      res.status(404).json({message: 'No job found with that id'})
+      return;
+    }
+    res.json(dbJobData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+//-----DELETE - DELETE JOB-----//
+router.delete('/:id', (req, res) => {
+  Job.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbJobData => {
+    if (!dbJobData) {
+      res.status(404).json({ message: 'No job found with this id' });
+      return;
+    }
+    res.json(dbJobData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
   });
 });
 

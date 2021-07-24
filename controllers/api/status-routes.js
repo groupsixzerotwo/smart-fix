@@ -43,4 +43,44 @@ router.post('/', (req,res) => {
   });
 });
 
+//-----PUT - UPDATE A STATUS-----//
+router.put('/:id', (req, res) => {
+  Status.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbStatusData => {
+    if (!dbStatusData) {
+      res.status(404).json({message: 'No status found with that id'})
+      return;
+    }
+    res.json(dbStatusData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+//-----DELETE - DELETE STATUS-----//
+router.delete('/:id', (req, res) => {
+  Status.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbStatusData => {
+    if (!dbStatusData) {
+      res.status(404).json({ message: 'No status found with this id' });
+      return;
+    }
+    res.json(dbStatusData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
 module.exports = router;

@@ -41,7 +41,7 @@ Job.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        is: ["[0-9]+-"]
+        is: ["[0-9]"]
       }
     },
     //Optional to add media
