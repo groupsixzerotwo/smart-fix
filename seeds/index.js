@@ -2,6 +2,7 @@ const seedUsers = require('./users-seeds');
 const seedService = require('./service-seeds');
 const seedPost = require('./post-seeds');
 const seedComment = require('./comment-seeds');
+const seedStatus = require('./status-seeds');
 
 const sequelize = require('../config/connection');
 
@@ -16,6 +17,8 @@ const seedAll = async () => {
   console.log('\n----POSTS SYNCED----\n');
   await seedComment();
   console.log('\n----POSTS SYNCED----\n');
+  await seedStatus();
+  console.log('\n----STATUS SYNCED----\n');
 
   process.exit(0);
 };

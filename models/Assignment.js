@@ -37,6 +37,7 @@ Assignment.init(
     job_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      unique: true,
       references: {
         model: 'job',
         key: 'id'
@@ -56,7 +57,7 @@ Assignment.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'assignment'
+    modelName: 'assignment',
   }
 );
 
