@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment, Job, Service } = require('../../models');
+const { User, Post, Comment, Job, Service, Status, Rating } = require('../../models');
 
 //-----GET - FIND ALL USERS-----//
 router.get('/', (req, res) => {
@@ -35,7 +35,18 @@ router.get('/:id', (req,res) => {
       },
       {
         model: Job,
-        attributes: ['id', 'job_title', 'job_text', 'created_at']
+        attributes: ['id', 'job_title', 'job_text', 'created_at'],
+        include: {
+          model: Status
+        }
+      },
+      {
+        model: Rating,
+        attributes: ['id', 'points'],
+        include: {
+          model: Job,
+          attributes: ['id', 'job_title', 'job_text']
+        }
       }
     ]
   })
@@ -65,7 +76,7 @@ router.post('/', (req,res) => {
     console.log(err);
     res.status(500).json(err)
   });
-})
+});
 
 //-----POST - LOGIN USER-----//
 //-----POST - LOGOUT USER-----//

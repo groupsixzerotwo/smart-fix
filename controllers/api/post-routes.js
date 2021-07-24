@@ -4,7 +4,7 @@ const sequelize = require('../../config/connection');
 
 //-----GET - FIND ALL POSTS-----//
 router.get('/', (req, res) => {
-  //Access User model and run .findAll() method
+  //Access Post model and run .findAll() method
   Post.findAll({
     attributes: ['id', 'title', 'post_text', 'created_at',
       [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 
 //-----GET - FIND ONE POST-----//
 router.get('/:id', (req, res) => {
-  //Access User model and run .findAll() method
+  //Access Post model and find One
   Post.findOne({
     where: {
       id: req.params.id
