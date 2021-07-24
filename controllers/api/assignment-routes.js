@@ -99,4 +99,44 @@ router.post('/', (req,res) => {
   });
 });
 
+//-----PUT - UPDATE A JOB-----//
+router.put('/:id', (req, res) => {
+  Assignment.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbAssignmentData => {
+    if (!dbAssignmentData) {
+      res.status(404).json({message: 'No job found with that id'})
+      return;
+    }
+    res.json(dbAssignmentData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+//-----DELETE - DELETE JOB-----//
+router.delete('/:id', (req, res) => {
+  Assignment.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbAssignmentData => {
+    if (!dbAssignmentData) {
+      res.status(404).json({ message: 'No job found with this id' });
+      return;
+    }
+    res.json(dbAssignmentData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
 module.exports = router;

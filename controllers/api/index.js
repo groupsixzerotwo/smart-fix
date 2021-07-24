@@ -7,6 +7,7 @@ const commentRoutes = require('./comment-routes');
 const jobRoutes = require('./job-routes');
 const statusRoutes = require('./status-routes');
 const assignmentRoutes = require('./assignment-routes');
+const ratingRoutes = require('./rating-routes');
 
 router.use('/users', userRoutes);
 router.use('/service', serviceRoutes);
@@ -15,5 +16,6 @@ router.use('/comments', commentRoutes);
 router.use('/jobs', jobRoutes);
 router.use('/status', statusRoutes);
 router.use('/assignment', assignmentRoutes);
+router.use('/rating', ratingRoutes);
 
 module.exports = router;
