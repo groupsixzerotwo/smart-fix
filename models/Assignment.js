@@ -19,7 +19,7 @@ Assignment.init(
       allowNull: false,
     },
     //Order number for Assignment
-    Order_number: {
+    order_number: {
       type: DataTypes.STRING,
       allowNull: false
     },

@@ -31,6 +31,9 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 
   Job.findOne({
+    where: {
+      id: req.params.id
+    },
     include: [
       {
         model: Status
