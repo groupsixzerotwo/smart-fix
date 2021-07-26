@@ -1,0 +1,15 @@
+.user-signing{
+    margin-top: 4.5rem;
+}
+
+button{
+    margin: 0 3rem;
+    border-radius: 3rem !important;
+}
+
+nav{
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 1.5rem !important;
+    padding: 0 1.5rem;
+}
