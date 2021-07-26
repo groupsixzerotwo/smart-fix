@@ -1,0 +1,11 @@
+#work-order-title {
+  border: rgba(0, 0, 0, 0.356) solid 2px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.356) 2px 2px;
+}
+
+#work-order-body {
+  border: rgba(0, 0, 0, 0.356) solid 2px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.356) 2px 2px;
+}

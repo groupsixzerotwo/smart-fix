@@ -8,4 +8,8 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+router.get("/posts", (req, res) => {
+  res.render("post");
+});
+
 module.exports = router;
