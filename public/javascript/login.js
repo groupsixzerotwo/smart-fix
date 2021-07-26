@@ -19,16 +19,13 @@ async function loginFormHandler(event) {
       }),
       headers: {'Content-Type' : 'application/json'}
     });
-    console.log(response)
     if (response.ok) {
-      console.log('Success')
       document.location.replace('/dashboard');
     } else {
-      //document.querySelector('.loginAlert').style.display = "block";
-      //setTimeout(function() { 
-      //  document.querySelector('.loginAlert').style.display = "none"; 
-      //}, 3000);
-      console.log('Failed')
+      document.querySelector('.loginAlert').style.display = "block";
+      setTimeout(function() { 
+        document.querySelector('.loginAlert').style.display = "none"; 
+      }, 3000);
     }
   }
 }

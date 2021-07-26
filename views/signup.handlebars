@@ -1,0 +1,34 @@
+<form class="signup-form">
+  <div>
+    <label for="username-signup">username:</label>
+    <input type="text" id="username-signup" />
+  </div>
+  <div>
+    <label for="email-signup">email:</label>
+    <input type="text" id="email-signup" />
+  </div>
+  <div>
+    <label for="password-signup">password:</label>
+    <input type="password" id="password-signup" />
+  </div>
+  <div>
+    <p>Are you registering as a service provider?</p>
+    <input type="radio" id="service-yes" name="service" value="Yes" />
+    <label for="service-yes">Yes</label>
+    <input type="radio" id="service-no" name="service" value="No" />
+    <label for="service-no">No</label>
+  </div>
+  <div>
+    <select name="service-type">
+      <option value="null" disabled>Please select srvice type</option>
+      {{#each services}}
+        <option value="{{id}}">{{service_type}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div>
+    <button type="submit">Signup</button>
+  </div>
+</form>
+
+<script src="/javascript/signup.js"></script>
