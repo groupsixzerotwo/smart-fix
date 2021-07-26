@@ -79,7 +79,51 @@ router.post('/', (req,res) => {
 });
 
 //-----POST - LOGIN USER-----//
+router.post('/login', (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  })
+  .then(dbUserData => {
+    console.log(dbUserData)
+    if (!dbUserData) {
+      res.status(400).json({ message: 'No user with that email address!' });
+      console.log("npdata")
+      return;
+    }
+
+    const validPassword = dbUserData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      console.log("Password")
+      return;
+    }
+
+    console.log("Ok")
+    req.session.save(() => {
+      // declare session variables
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.service_id = dbUserData.service_id;
+      req.session.loggedIn = true;
+
+      res.json({ user: dbUserData, message: 'You are now logged in!' });
+    });
+  });
+});
+
 //-----POST - LOGOUT USER-----//
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
 //-----PUT - UPDATE USER-----//
 router.put('/:id', (req, res) => {
   // expects {username: '', email: '', password: ''} format
