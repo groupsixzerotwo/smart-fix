@@ -69,9 +69,19 @@ router.post('/', (req,res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    skill_id: req.body.skill_id
+    service_id: req.body.service_id
   })
-  .then(dbUserData => res.json(dbUserData))
+  .then(dbUserData => {
+    req.session.save(() => {
+      // declare session variables
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.service_id = dbUserData.service_id;
+      req.session.loggedIn = true;
+
+      res.json(dbUserData);
+    });
+  })
   .catch(err => {
     console.log(err);
     res.status(500).json(err)
@@ -79,7 +89,46 @@ router.post('/', (req,res) => {
 });
 
 //-----POST - LOGIN USER-----//
+router.post('/login', (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  })
+  .then(dbUserData => {
+    if (!dbUserData) {
+      res.status(400).json({ message: 'No user with that email address!' });
+      return;
+    }
+    const validPassword = dbUserData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      return;
+    }
+
+    req.session.save(() => {
+      // declare session variables
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.service_id = dbUserData.service_id;
+      req.session.loggedIn = true;
+
+      res.json({ user: dbUserData, message: 'You are now logged in!' });
+    });
+  });
+});
+
 //-----POST - LOGOUT USER-----//
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
 //-----PUT - UPDATE USER-----//
 router.put('/:id', (req, res) => {
   // expects {username: '', email: '', password: ''} format

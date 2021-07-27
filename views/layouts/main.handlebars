@@ -4,14 +4,44 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
+
   <title>Smart-Fix</title>
 </head>
 <body>
-  <header>
-    <h1>SMART FIX</h1>
+  <header class="container row">
+    <h1 class="col s6">
+      <img class="image" height="60" src="/assets/img/logo.jpeg" alt="logo">
+      <a href="/">SMART FIX</a>
+    </h1>
+
+    <div class="col s6 user-signing">
+          {{#if loggedIn}}
+          <a href="/dashboard" class="col s3">Dashboard</a>
+          <button id="logout" class="col s3 btn waves-effect waves-light blue">Sign Out</button>
+          {{else}}
+          <a href="/login"><button class="col s3 btn waves-effect waves-light blue">Sign In</button></a>
+          <a href="/signup"><button class="col s3 btn waves-effect waves-light green">Register</button></a>
+          {{/if}}
+    </div>
   </header>
+
   <main>
     {{{body}}}
   </main>
+
+  {{!-- <footer>
+    <p>Thank you for visiting</p>
+  </footer> --}}
+
+  {{#if loggedIn}}
+  <script type="text/javascript" src="/assets/javascript/logout.js"></script>
+  {{/if}}
 </body>
 </html>
