@@ -18,7 +18,7 @@ async function postForm(event) {
       },
     });
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/api/posts");
     } else {
       alert(response.statusText);
     }

@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
   res.render("homepage");
 });
 
-router.get("/wof", (req, res) => {
+router.get("/new-order", (req, res) => {
   res.render("post");
 });
 

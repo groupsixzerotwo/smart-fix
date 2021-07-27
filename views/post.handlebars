@@ -36,5 +36,23 @@
       </div>
     </form>
   </div>
+
+  <ol class="post-list">
+    {{#each posts as |post|}}
+      <li>
+        <article class="post">
+          <div class="title">
+            <h2><a
+                class="post-title"
+                href="post/{{post.id}}"
+              >{{post.title}}</a></h2>
+            <span>{{post.post_text}}</span>
+          </div>
+
+        </article>
+      </li>
+    {{/each}}
+  </ol>
+
 </div>
 <script src="/javascript/post.js"></script>
