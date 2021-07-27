@@ -20,13 +20,13 @@ nav{
     justify-content: space-evenly;
     border-radius: 1.5reauto0 1.5rem;
     margin:auto;
+    font-size: 20px;
 }
 
 .form-container {
     background-image: url('../img/logo.jpeg');
     margin: 100px;
-    margin-left: 375px;
-    display: block;
+    /*margin-left: 375px;*/
     text-align: center;
     border: 3px solid #024e76;
     padding: 25px;
@@ -35,6 +35,12 @@ nav{
 
 .form-container input {
   text-align: center;
+  width: 80%;
+}
+
+#displayBox {
+  display: flex;
+  justify-content: center;
 }
 
 .loginAlert {
@@ -85,6 +91,13 @@ nav{
     font-size: 50;
     font-weight: bold;
 }
+
+.signup-form p {
+  color: black;
+  font-weight: 600;
+  margin: 5px;
+}
+
 button {
     background-color: #365eb3;
   border: none;
