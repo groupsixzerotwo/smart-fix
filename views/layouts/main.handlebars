@@ -8,29 +8,38 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/assets/css/style.css" rel="stylesheet">
 
   <title>Smart-Fix</title>
 </head>
 <body>
-  <header class="container row">
-    <h1 class="col s6">
+  <header class="container pageHeader">
+    <h1 class="col">
       <img class="image" height="60" src="/assets/img/logo.jpeg" alt="logo">
       <a href="/">SMART FIX</a>
     </h1>
 
-    <div class="col s6 user-signing">
+    <div class="col user-signing">
           {{#if loggedIn}}
-          <a href="/dashboard" class="col s3">Dashboard</a>
-          <button id="logout" class="col s3 btn waves-effect waves-light blue">Sign Out</button>
+          <!--<a href="/dashboard" class="col s3">Dashboard</a>-->
+          <button id="logout" class="col btn waves-effect waves-light blue">Sign Out</button>
           {{else}}
-          <a href="/login"><button class="col s3 btn waves-effect waves-light blue">Sign In</button></a>
-          <a href="/signup"><button class="col s3 btn waves-effect waves-light green">Register</button></a>
+          <a href="/login"><button class="col btn waves-effect waves-light blue">Sign In</button></a>
+           <!--<a href="/signup"><button class="col btn waves-effect waves-light green">Register</button></a>-->
           {{/if}}
     </div>
   </header>
+  <nav class="container blue darken-3">
+    {{#if loggedIn}}
+    <a href="/dashboard">Dashboard</a>
+    {{/if}}
+    <a href="/forums">Forums</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
   <main>
     {{{body}}}
@@ -43,5 +52,6 @@
   {{#if loggedIn}}
   <script type="text/javascript" src="/assets/javascript/logout.js"></script>
   {{/if}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

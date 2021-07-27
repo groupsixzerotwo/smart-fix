@@ -19,14 +19,25 @@ async function loginFormHandler(event) {
       }),
       headers: {'Content-Type' : 'application/json'}
     });
+
     if (response.ok) {
       document.location.replace('/dashboard');
     } else {
-      document.querySelector('.loginAlert').style.display = "block";
-      setTimeout(function() { 
-        document.querySelector('.loginAlert').style.display = "none"; 
-      }, 3000);
+      response.text().then(function (text) {
+        document.querySelector('.loginAlert').textContent = text.split('"')[3];
+        document.querySelector('.loginAlert').style.display = "block";
+        setTimeout(function() { 
+          document.querySelector('.loginAlert').style.display = "none"; 
+        }, 3000);
+      });
     }
+  }
+  else {
+    document.querySelector('.loginAlert').textContent = "Please enter both email and password!";
+    document.querySelector('.loginAlert').style.display = "block";
+    setTimeout(function() { 
+      document.querySelector('.loginAlert').style.display = "none"; 
+    }, 3000);
   }
 }
 
