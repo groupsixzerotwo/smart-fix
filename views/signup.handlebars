@@ -1,47 +1,67 @@
-<nav class="container blue darken-3">
-    <a href="/forums">Forums</a>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-</nav>
-
 <div class='form-container'>
-<form class="signup-form">
-  <div>
-    <label for="username-signup">USERNAME:</label>
-    <input type="text" id="username-signup" />
-  </div>
-  <div>
-    <label for="email-signup">EMAIL:</label>
-    <input type="text" id="email-signup" />
-  </div>
-  <div>
-    <label for="password-signup">PASSWORD:</label>
-    <input type="password" id="password-signup" />
-  </div>
-  <div>
-    <p>Are you registering as a service provider?</p>
-    
-    <input type="radio" id="service-yes" name="service" value="Yes">
-    <label for="service-yes">Yes</label>
-
-
-    
-    <input type="radio" id="service-no" name="service" value="No">
-    <label for="service-no">No</label>
-   
-  </div>
-  <div>
-    <select name="service-type">
-      <option value="null" disabled>Please select srvice type</option>
-      {{#each services}}
-        <option value="{{id}}">{{service_type}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <div>
-    <button type="submit">Signup</button>
-  </div>
-</form>
+  <form class="signup-form">
+    <div>
+      <label for="username-signup">USERNAME:</label>
+      <input type="text" id="username-signup" />
+    </div>
+    <div>
+      <label for="email-signup">EMAIL:</label>
+      <input type="text" id="email-signup" />
+    </div>
+    <div>
+      <label for="password-signup">PASSWORD:</label>
+      <input type="password" id="password-signup" />
+    </div>
+    <!--<div>
+      <p>Are you registering as a service provider?</p>
+      
+      <input type="radio" id="service-yes" name="service" value="Yes">
+      <label for="service-yes">Yes</label>
+      <input type="radio" id="service-no" name="service" value="No">
+      <label for="service-no">No</label> 
+    </div>-->
+    <div>
+      <p>Are you registering as a service provider?</p>
+      <div class="serviceYesNo">
+        <p>
+          <label>
+            <input name="serviceYesNo" type="radio" value="Yes" id="service-yes"/>
+            <span>Yes</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input name="serviceYesNo" type="radio" value="No" id="service-no"/>
+            <span>No</span>
+          </label>
+        </p>
+      </div>
+    </div>  
+    <!--<div>
+      <select name="service-type">
+        <option value="null" disabled>Please select srvice type</option>
+        {{#each services}}
+          <option value="{{id}}">{{service_type}}</option>
+        {{/each}}
+      </select>
+    </div>-->
+    <div action="#" class="service-type">
+      <p>Please select the type of service you will be providing!</p>
+      <div class="service-list">
+        {{#each services}}
+        <p>
+          <label>
+            <input name="service-list" type="radio" value="{{id}}"/>
+            <span>{{service_type}}</span>
+          </label>
+        </p>
+        {{/each}}
+      </div>
+    </div>  
+    <div>
+      <button class="col s3 btn waves-effect waves-light green register-btn" type="submit">Register</button>
+      <!--<button type="submit">Signup</button> -->
+    </div>
+  </form>
 </div>
-<script src="/javascript/signup.js"></script>
+<script src="/assets/javascript/signup.js"></script>

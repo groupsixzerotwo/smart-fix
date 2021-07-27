@@ -1,7 +1,15 @@
 .user-signing{
     margin-top: 4.5rem;
 }
-
+/*
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+ -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+*/
 button{
     margin: 0 3rem;
     border-radius: 3rem !important;
@@ -13,6 +21,7 @@ nav{
     border-radius: 1.5reauto0 1.5rem;
     margin:auto;
 }
+
 .form-container {
     background-image: url('../img/logo.jpeg');
     margin: 100px;
@@ -24,9 +33,15 @@ nav{
     width: 40%;
 }
 
+.form-container input {
+  text-align: center;
+}
 
-
-login-form {
+.loginAlert {
+  color: red;
+  display: none;
+}
+/*login-form {
  
   background-color: #024e76;
   padding: 20px;
@@ -35,6 +50,28 @@ login-form {
   margin: 3.5%;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   border-radius: 15px;
+}*/
+
+.pageHeader{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.serviceYesNo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.service-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.service-type {
+  display: none;
 }
 
 .login-form label {
