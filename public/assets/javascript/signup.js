@@ -7,11 +7,8 @@ async function signupFormHandler(event) {
   const sp = document.querySelector("input[name=serviceYesNo]:checked").value;
   let service_id = null;
   if (sp === "Yes") {
-    const service = document.querySelector("input[name=service-list]:checked");
-    service_id = service.value;//options[service.selectedIndex].value
+    service_id = document.querySelector("input[name=service-list]:checked").value;
   };
-
-  console.log(username, email, password, sp, service_id)
 
   if (username && email && password && sp) {
     const response = await fetch('/api/users', {
@@ -29,8 +26,19 @@ async function signupFormHandler(event) {
     if (response.ok) {
       document.location.replace('/dashboard')
     } else {
-      alert(response.statusText);
+      document.querySelector('.loginAlert').textContent = "Invalid input. Please try again!!";
+      document.querySelector('.loginAlert').style.display = "block";
+      setTimeout(function() { 
+        document.querySelector('.loginAlert').style.display = "none"; 
+      }, 3000);
     }
+  }
+  else {
+    document.querySelector('.loginAlert').textContent = "All fields are required. Please try again!!";
+    document.querySelector('.loginAlert').style.display = "block";
+    setTimeout(function() { 
+      document.querySelector('.loginAlert').style.display = "none"; 
+    }, 3000);
   }
 }
 
