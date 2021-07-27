@@ -1,0 +1,13 @@
+<article class="post">
+  <div class="title">
+    <a href="/post/{{id}}">{{title}}</a>
+    {{#each post_text as |paragraph|}}
+      <p>{{paragraph}}</p>
+    {{/each}}
+  </div>
+  <div class="meta">
+    Created by {{user.username}} on {{format_dates created_at}}
+    |
+    <a href="/post/{{id}}">{{comments.length}} {{format_plural 'comment' comments.length}}</a>
+  </div>
+</article>
