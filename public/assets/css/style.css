@@ -109,3 +109,26 @@ button {
   margin: 4px 2px;
   cursor: pointer;
 }
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+  .welcome h2 {  
+  margin: 15px 0;
+  font-size: 24px;
+}
+
+.spColumns h3{
+  font-size: 24px;
+  margin: 10px;
+}
+
+.spColumns p{
+  margin: 5px 0;
+}
+
+.spColumns a {
+  font-size: 20px;
+}
