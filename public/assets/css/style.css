@@ -138,3 +138,8 @@ button {
 #applyJobForm {
   display: none;
 }
+
+.alertMessage {
+  color: red;
+  display: none;
+}

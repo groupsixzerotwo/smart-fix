@@ -35,7 +35,7 @@ Assignment.init(
     },
     approved_status: {
       type: DataTypes.BOOLEAN,
-      allowNull: true
+      defaultValue: false
     },
     //job id for the assignment
     job_id: {

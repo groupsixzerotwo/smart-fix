@@ -46,7 +46,7 @@ const applyJobFormHandler = async (event) => {
       
     } 
     else {
-      document.querySelector('.alertMessage').textContent = "Please enter both email and password!";
+      document.querySelector('.alertMessage').textContent = "Please try again!";
       document.querySelector('.alertMessage').style.display = "block";
       setTimeout(function() { 
         document.querySelector('.alertMessage').style.display = "none"; 
