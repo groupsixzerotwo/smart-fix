@@ -1,8 +1,9 @@
 const express = require('express');
 const sequelize = require('./config/connection');
 const routes = require('./controllers');
+const helpers = require('./utils/helpers');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
+const hbs = exphbs.create({helpers});
 const path = require('path');
 const session = require('express-session');
 
@@ -32,5 +33,5 @@ app.use(routes);
 
 //-----CONNECT TO THE DATABASE-----//
 sequelize.sync({force: false}).then(() => {
-  app.listen(PORT, () => console.log('Now istening'));
+  app.listen(PORT, () => console.log('Now Listening'));
 })
