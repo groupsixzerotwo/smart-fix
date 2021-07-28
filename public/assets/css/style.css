@@ -1,5 +1,5 @@
-.user-signing{
-    margin-top: 4.5rem;
+.user-signing {
+  margin-top: 4.5rem;
 }
 /*
 input:-webkit-autofill,
@@ -10,27 +10,27 @@ input:-webkit-autofill:active
  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 */
-button{
-    margin: 0 3rem;
-    border-radius: 3rem !important;
+button {
+  margin: 0 3rem;
+  border-radius: 3rem !important;
 }
 
-nav{
-    display: flex;
-    justify-content: space-evenly;
-    border-radius: 1.5reauto0 1.5rem;
-    margin:auto;
-    font-size: 20px;
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 1.5reauto0 1.5rem;
+  margin: auto;
+  font-size: 20px;
 }
 
 .form-container {
-    background-image: url('../img/logo.jpeg');
-    margin: 100px;
-    /*margin-left: 375px;*/
-    text-align: center;
-    border: 3px solid #024e76;
-    padding: 25px;
-    width: 40%;
+  background-image: url("../img/logo.jpeg");
+  margin: 100px;
+  /*margin-left: 375px;*/
+  text-align: center;
+  border: 3px solid #024e76;
+  padding: 25px;
+  width: 40%;
 }
 
 .form-container input {
@@ -57,11 +57,10 @@ nav{
   border-radius: 15px;
 }*/
 
-.pageHeader{
+.pageHeader {
   display: flex;
   justify-content: space-between;
 }
-
 
 .serviceYesNo {
   display: flex;
@@ -80,15 +79,15 @@ nav{
 }
 
 .login-form label {
-    color: black;
-    font-size: 50;
-    font-weight: bold;
+  color: black;
+  font-size: 50;
+  font-weight: bold;
 }
 
 .signup-form label {
-    color: black;
-    font-size: 50;
-    font-weight: bold;
+  color: black;
+  font-size: 50;
+  font-weight: bold;
 }
 
 .signup-form p {
@@ -98,7 +97,7 @@ nav{
 }
 
 button {
-    background-color: #365eb3;
+  background-color: #365eb3;
   border: none;
   color: white;
   padding: 15px 32px;
