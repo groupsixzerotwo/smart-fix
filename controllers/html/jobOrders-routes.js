@@ -60,6 +60,7 @@ router.get('/', (req, res) => {
       .then(([assignData, jData]) => {
       const assignmentData = assignData.map(assignment => assignment.get({plain: true}));
       const jobData = jData.map(assignment => assignment.get({plain: true}));
+      console.log({assignmentData, jobData, theuser, loggedIn: req.session.loggedIn})
       res.render('jobOrdersSP', {assignmentData, jobData, theuser, loggedIn: req.session.loggedIn})
     });    
   } 
@@ -87,7 +88,7 @@ router.get('/', (req, res) => {
 
     Promise.all([dbJobData])
       .then(([jData]) => {
-      const jobData = jData.map(assignment => assignment.get({plain: true}));
+      const jobData = jData.map(job => job.get({plain: true}));
       console.log(jobData);
       res.render('jobOrdersC', {jobData, theuser, loggedIn: req.session.loggedIn})
     });    
@@ -95,6 +96,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/assignment/:id', (req, res) => {
+  const theuser = req.session.username;
+  const isService = req.session.service_id;
   Assignment.findOne({
     where: {
       id: req.params.id
@@ -130,7 +133,9 @@ router.get('/assignment/:id', (req, res) => {
       res.status(404).json({message: 'No service found with this id'});
       return;
     }
-    res.render('jobOrdersC', {dbAssignmentData, theuser, isService, loggedIn: req.session.loggedIn})
+    const assignmentData = dbAssignmentData.get({plain: true});
+    console.log({assignmentData, theuser, isService, loggedIn: req.session.loggedIn})
+    res.render('single-assignment', {assignmentData, theuser, isService, loggedIn: req.session.loggedIn})
   })
   .catch(err => {
     console.log(err);
@@ -139,6 +144,8 @@ router.get('/assignment/:id', (req, res) => {
 });
 
 router.get('/job/:id', (req, res) => {
+  const theuser = req.session.username;
+  const isService = req.session.service_id;
   Job.findOne({
     where: {
       id: req.params.id
@@ -157,7 +164,7 @@ router.get('/job/:id', (req, res) => {
         include: {
           //User service provider
           model: User,
-          attributes: ['id', 'username'],
+          attributes: ['id', 'username', 'email'],
           include: {
             model: Service
           }
@@ -174,7 +181,9 @@ router.get('/job/:id', (req, res) => {
       res.status(404).json({message: 'No job found with this id'});
       return;
     }
-    res.render('jobOrdersC', {dbJobData, theuser, isService, loggedIn: req.session.loggedIn})
+    const jobData = dbJobData.get({plain: true});
+    console.log({jobData, theuser, isService, loggedIn: req.session.loggedIn})
+    res.render('single-job', {jobData, theuser, isService, loggedIn: req.session.loggedIn})
   })
   .catch(err => {
     console.log(err);
