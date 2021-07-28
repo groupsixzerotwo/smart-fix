@@ -11,19 +11,38 @@
       <p>Status: {{jobData.status.status_text}}</p>
       <p>Created on: {{format_dates jobData.createdAt}}</p>
       <p>Last updated: {{format_dates jobData.updatedAt}}</p>
-      <p>ASSIGNMENTS</p>
       
       {{#if isService}}
-        {{#each jobData.assignments as |assignment|}}
-          <p>Service provider: {{assignment.user.username}}</p>
-          <p>Service type: {{assignment.user.service.service_type}}</p>
-          <p>Contact: {{assignment.user.email}}</p>
-          <p>Order number: {{assignment.order_number}}</p>
-          <p>Cost: ${{assignment.cost}}</p>
-        {{/each}}
-      
-      {{else}}
+        {{#if applied}}
+        <button>Applied</button>
+        {{else}}
+        <button class="applyJobBtn">Apply</button>
+        <div class="container" id="applyJobForm">
+          <form class="applyJobForm">
+            <div>
+              <label for='assignmentCost'>COST: </label>
+              <input type='text' id='assignmentCost' />
+            </div>
+            <div>
+              <label for='assignmentOrderNo'>ORDER#: </label>
+              <input type='text' id='assignmentOrderNo' />
+            </div>
+            <!--<div>
+              <label for='startDate'>PROPOSED START DATE: </label>
+              <input type='text' id='startDate' />
+            </div>-->
+            <div>
+              <button class="applyJobSubmitBtn" type="submit">Submit</button>
+              <button class="applyJobCancelBtn" >Cancel</button>
+             </div>
+          </form>         
+        </div>
+        <script src="/assets/javascript/applyNewJob.js"></script>
+        {{/if}}
 
+      {{else}}
+      
+        <p>ASSIGNMENTS</p>
         {{#each jobData.assignments as |assignment|}}
           <p>Service provider: {{assignment.user.username}}</p>
           <p>Service type: {{assignment.user.service.service_type}}</p>
@@ -33,6 +52,7 @@
         {{/each}}
 
        {{/if}}
+       <p class="alertMessage"></p>
     </div>
   </div>
 </div>

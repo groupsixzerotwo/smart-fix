@@ -90,7 +90,7 @@ router.post('/', (req,res) => {
     start_date: req.body.start_date,
     complete_date: req.body.complete_date,
     job_id: req.body.job_id,
-    user_id: req.body.user_id
+    user_id: req.session.user_id
   })
   .then(dbAssignmentData => res.json(dbAssignmentData))
   .catch(err => {

@@ -182,8 +182,14 @@ router.get('/job/:id', (req, res) => {
       return;
     }
     const jobData = dbJobData.get({plain: true});
-    console.log({jobData, theuser, isService, loggedIn: req.session.loggedIn})
-    res.render('single-job', {jobData, theuser, isService, loggedIn: req.session.loggedIn})
+    let applied = false;
+    jobData.assignments.forEach(assignment => {
+      if (assignment.user.id === req.session.user_id) {
+        applied = true;
+      }
+    });
+    console.log({jobData, theuser, isService, applied, loggedIn: req.session.loggedIn})
+    res.render('single-job', {jobData, theuser, isService, applied, loggedIn: req.session.loggedIn})
   })
   .catch(err => {
     console.log(err);

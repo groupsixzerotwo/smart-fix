@@ -98,7 +98,7 @@ nav{
 }
 
 button {
-    background-color: #365eb3;
+  background-color: #365eb3;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -110,12 +110,13 @@ button {
   cursor: pointer;
 }
 
+/*--USER NAME DISPLAY--*/
 .welcome {
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
 }
-  .welcome h2 {  
+.welcome h2 {  
   margin: 15px 0;
   font-size: 24px;
 }
@@ -131,4 +132,9 @@ button {
 
 .spColumns a {
   font-size: 20px;
+}
+
+/*--JOB DATA SINGLE PAGE DISPLAY--*/
+#applyJobForm {
+  display: none;
 }
