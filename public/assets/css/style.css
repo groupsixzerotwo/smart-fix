@@ -1,27 +1,48 @@
+header{
+    margin: 0 5vw !important;
+}
+
+#about{
+    padding-bottom: 5vw;
+}
+
 .user-signing{
-    margin-top: 4.5rem;
+    margin-top: 4.5vw;
 }
-/*
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active
-{
- -webkit-box-shadow: 0 0 0 30px white inset !important;
+
+.hero{
+    margin-top: 1.5vw;
+    position: relative;
+    bottom: 4vw;
+    z-index: -1;
 }
-*/
-button{
-    margin: 0 3rem;
+
+.btn{
+    margin: 0 3vw;
     border-radius: 3rem !important;
 }
 
 nav{
-    display: flex;
-    justify-content: space-evenly;
-    border-radius: 1.5reauto0 1.5rem;
-    margin:auto;
-    font-size: 20px;
+    border-radius: 3rem;
+    padding: 0 1.5vw;
 }
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#services li{
+    margin: 2vw;
+    border: rgb(74, 148, 236) 5px solid;
+}
+
+#services li h3{
+    padding: 2vw;
+}
+
+
 
 .form-container {
     background-image: url('../img/logo.jpeg');
@@ -97,8 +118,8 @@ nav{
   margin: 5px;
 }
 
-button {
-    background-color: #365eb3;
+/* button {
+  background-color: #365eb3;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -108,4 +129,4 @@ button {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-}
+} */
