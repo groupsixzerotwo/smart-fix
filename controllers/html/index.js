@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
 const homeRoutes = require('./home-routes');
-const dashboardRoutes = require('./dashboard-routes');
+const jobOrdersRoutes = require('./jobOrders-routes');
 const forumsRoutes = require('./forums-routes');
 
 router.use('/', homeRoutes);
-router.use('/dashboard', dashboardRoutes);
+router.use('/orders', jobOrdersRoutes);
 router.use('/forums', forumsRoutes);
 
 module.exports = router;

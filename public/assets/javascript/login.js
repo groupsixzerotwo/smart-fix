@@ -21,7 +21,7 @@ async function loginFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.replace('/');
     } else {
       response.text().then(function (text) {
         document.querySelector('.loginAlert').textContent = text.split('"')[3];
