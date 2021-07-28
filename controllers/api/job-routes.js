@@ -82,7 +82,7 @@ router.post('/', (req,res) => {
     job_contact: req.body.job_contact,
     job_media: req.body.job_media,
     status_id: req.body.status_id,
-    user_id: req.body.user_id
+    user_id: req.session.user_id
   })
   .then(dbJobData => res.json(dbJobData))
   .catch(err => {

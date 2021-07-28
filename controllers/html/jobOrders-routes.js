@@ -183,6 +183,8 @@ router.get('/job/:id', (req, res) => {
     }
     const jobData = dbJobData.get({plain: true});
     let applied = false;
+    const temp = jobData.job_text.split("\n");
+    jobData.job_text = temp;
     jobData.assignments.forEach(assignment => {
       if (assignment.user.id === req.session.user_id) {
         applied = true;

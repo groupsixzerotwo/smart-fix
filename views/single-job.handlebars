@@ -1,9 +1,11 @@
-<div id="displayBox">
+<div class="displayBox">
   <div class="row container">
     <div class="col s12">
       <p>JOB DATA</p>
       <p>{{jobData.job_title}}</p>
-      <p>{{jobData.job_text}}</p>
+      {{#each jobData.job_text as |text|}}
+        <p>{{text}}</p>
+      {{/each}}
       <p>Customer: {{jobData.user.username}}</p>
       <p>Address: {{jobData.job_address}}</p>
       <p>Contact: {{jobData.job_contact}}</p>

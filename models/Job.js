@@ -22,7 +22,7 @@ Job.init(
     },
     //job text
     job_text: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         len: [1]
@@ -30,7 +30,7 @@ Job.init(
     },
     //address for the job
     job_address: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         len: [1]

@@ -37,7 +37,7 @@ nav{
   text-align: center;
 }
 
-#displayBox {
+.displayBox {
   display: flex;
   justify-content: center;
 }
@@ -141,5 +141,14 @@ button {
 
 .alertMessage {
   color: red;
+  display: none;
+}
+
+/*--JOB CREATE CUSTOMER PAGE DISPLAY--*/
+.addNewJobForm textarea {
+  white-space: pre-wrap;
+}
+
+#addNewJobForm {
   display: none;
 }
