@@ -8,7 +8,7 @@
       <h3>Job Assignments</h3>
       {{#each assignmentData as |assignment|}}
         <div class="card-panel grey lighten-4">
-          <a class="light-blue-text lighten-3" href="/job/{{assignment.id}}">{{assignment.job.job_title}}</a>
+          <a class="light-blue-text lighten-3" href="/orders/assignment/{{assignment.id}}">{{assignment.job.job_title}}</a>
           <p class="black-text">Created by {{assignment.job.user.username}} on {{format_dates assignment.job.created_at}}</p>
           <p class="black-text">Status - {{assignment.job.status.status_text}}</p>
           <p class="black-text">Last updated - {{format_dates assignment.job.updated_at}}</p>
@@ -19,7 +19,7 @@
       <h3>See all Jobs</h3>
       {{#each jobData as |job|}}
         <div class="card-panel grey lighten-4">
-          <a class="light-blue-text lighten-3" href="/job/{{job.id}}">{{job.job_title}}</a>
+          <a class="light-blue-text lighten-3" href="/orders/job/{{job.id}}">{{job.job_title}}</a>
           <p class="black-text">Created by {{job.user.username}} on {{format_dates job.createdAt}}</p>
           <p class="black-text">Status - {{job.status.status_text}}</p>
           <p class="black-text">Last updated - {{format_dates job.updatedAt}}</p>
