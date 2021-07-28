@@ -8,35 +8,37 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/assets/css/style.css" rel="stylesheet">
 
   <title>Smart-Fix</title>
 </head>
 <body>
-  <header class="row">
+  <header class="container row pageHeader">
     <h1 class="col s6">
       <a href="/"><img class="logo" height="60" src="/assets/img/logo.jpeg" alt="logo">SMART FIX</a>
     </h1>
 
     <div class="col s6 user-signing">
-          {{#if loggedIn}}
-          <a href="/dashboard" class="col s3">Dashboard</a>
-          <button id="logout" class="col s3 btn waves-effect waves-light blue">Sign Out</button>
-          {{else}}
-          <a href="/login"><button class="col m12 l3 btn waves-effect waves-light blue">Sign In</button></a>
-          <a href="/signup"><button class="col m12 l3 btn waves-effect waves-light green">Register</button></a>
-          {{/if}}
+      {{#if loggedIn}}
+      <button id="logout" class="col m12 l3 btn waves-effect waves-light blue">Sign Out</button>
+      {{else}}
+      <a href="/login"><button class="col m12 l3 right btn waves-effect waves-light blue">Sign In</button></a>
+      <a href="/signup"><button class="col m12 l3 right btn waves-effect waves-light green">Register</button></a>
+      {{/if}}
     </div>
   </header>
 
   <nav class="container row blue darken-3">
     <ul class="col s12">
-    <li><a class="col s3" href="/forums">Forums</a></li>
-    <li><a class="col s3" href="#services">Services</a></li>
-    <li><a class="col s3" href="#about">About</a></li>
-    <li><a class="col s3" href="#contact">Contact</a></li>
+      {{#if loggedIn}}
+      <li><a class="col s3" href="/dashboard">Dashboard</a></li>
+      {{/if}}
+      <li><a class="col s3" href="/forums">Forums</a></li>
+      <li><a class="col s3" href="/#services">Services</a></li>
+      <li><a class="col s3" href="/#about">About</a></li>
+      <li><a class="col s3" href="/#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -72,5 +74,6 @@
   {{#if loggedIn}}
   <script type="text/javascript" src="/assets/javascript/logout.js"></script>
   {{/if}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

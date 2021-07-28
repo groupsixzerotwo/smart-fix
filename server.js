@@ -32,5 +32,5 @@ app.use(routes);
 
 //-----CONNECT TO THE DATABASE-----//
 sequelize.sync({force: false}).then(() => {
-  app.listen(PORT, () => console.log('Now istening'));
+  app.listen(PORT, () => console.log('Now Listening'));
 })
