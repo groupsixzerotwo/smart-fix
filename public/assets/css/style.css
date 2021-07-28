@@ -1,15 +1,44 @@
+header{
+    margin: 0 5vw !important;
+}
+
+.about{
+    padding-bottom: 5vw;
+}
+
 .user-signing{
-    margin-top: 4.5rem;
+    margin-top: 4.5vw;
+}
+
+img{
+    margin-top: 1.5vw;
+    position: relative;
+    bottom: 4vw;
+    z-index: -1;
 }
 
 button{
-    margin: 0 3rem;
+    margin: 0 3vw;
     border-radius: 3rem !important;
 }
 
 nav{
-    display: flex;
-    justify-content: space-evenly;
-    border-radius: 1.5rem !important;
-    padding: 0 1.5rem;
+    border-radius: 3rem;
+    padding: 0 1.5vw;
 }
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#services li{
+    margin: 2vw;
+    border: rgb(74, 148, 236) 5px solid;
+}
+
+#services li h3{
+    padding: 2vw;
+}
+

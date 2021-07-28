@@ -15,10 +15,9 @@
   <title>Smart-Fix</title>
 </head>
 <body>
-  <header class="container row">
+  <header class="row">
     <h1 class="col s6">
-      <img class="image" height="60" src="/assets/img/logo.jpeg" alt="logo">
-      <a href="/">SMART FIX</a>
+      <a href="/"><img class="logo" height="60" src="/assets/img/logo.jpeg" alt="logo">SMART FIX</a>
     </h1>
 
     <div class="col s6 user-signing">
@@ -26,19 +25,49 @@
           <a href="/dashboard" class="col s3">Dashboard</a>
           <button id="logout" class="col s3 btn waves-effect waves-light blue">Sign Out</button>
           {{else}}
-          <a href="/login"><button class="col s3 btn waves-effect waves-light blue">Sign In</button></a>
-          <a href="/signup"><button class="col s3 btn waves-effect waves-light green">Register</button></a>
+          <a href="/login"><button class="col m12 l3 btn waves-effect waves-light blue">Sign In</button></a>
+          <a href="/signup"><button class="col m12 l3 btn waves-effect waves-light green">Register</button></a>
           {{/if}}
     </div>
   </header>
+
+  <nav class="container row blue darken-3">
+    <ul class="col s12">
+    <li><a class="col s3" href="/forums">Forums</a></li>
+    <li><a class="col s3" href="#services">Services</a></li>
+    <li><a class="col s3" href="#about">About</a></li>
+    <li><a class="col s3" href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
 
   <main>
     {{{body}}}
   </main>
 
-  {{!-- <footer>
-    <p>Thank you for visiting</p>
-  </footer> --}}
+  <footer id="contact" class="page-footer blue darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h4>Smart Fix</h4>
+          <p>Easily book plumbing, snow removal, lawn maintenance, and other services online.<br>Maintenance done right! </p>
+        </div>
+
+        <div class="col l4 offset-l2 s12 left">
+            <h4 class="white-text">Contact Us</h4>
+            <ul id="contact">
+              <li><p class="grey-text text-lighten-3">Call us: 000-000-0000</p></li>
+              <li>Email: <a class="grey-text text-lighten-3" href="#!">email@example.com</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <p>Thank you for visiting</p>
+      </div>
+    </div>
+  </footer>
 
   {{#if loggedIn}}
   <script type="text/javascript" src="/assets/javascript/logout.js"></script>
