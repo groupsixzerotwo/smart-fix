@@ -6,8 +6,6 @@ const approveAssignmentHandler = async (event) => {
   ];
   const order_number = document.querySelector('.orderNumber').innerHTML;
 
-  console.log(job_id, order_number)
-
   const assignData = await fetch(`/api/assignment/approve`, {
     method: 'POST',
     body: JSON.stringify({

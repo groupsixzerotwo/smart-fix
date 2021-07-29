@@ -149,6 +149,6 @@ button {
   white-space: pre-wrap;
 }
 
-#addNewJobForm, #editJobForm{
+#addNewJobForm, #editJobForm, #editAssignForm {
   display: none;
 }
