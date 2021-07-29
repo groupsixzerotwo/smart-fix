@@ -183,56 +183,25 @@ router.get('/job/:id', (req, res) => {
     }
     const jobData = dbJobData.get({plain: true});
     let applied = false;
+    let approval = false;
     const temp = jobData.job_text.split("\n");
     jobData.job_text = temp;
     jobData.assignments.forEach(assignment => {
+      console.log(assignment)
+      if (assignment.approved_status) {
+        approval = true;
+      };
       if (assignment.user.id === req.session.user_id) {
         applied = true;
-      }
+      };
     });
-    console.log({jobData, theuser, isService, applied, loggedIn: req.session.loggedIn})
-    res.render('single-job', {jobData, theuser, isService, applied, loggedIn: req.session.loggedIn})
+    console.log({jobData, theuser, isService, applied, approval, loggedIn: req.session.loggedIn})
+    res.render('single-job', {jobData, theuser, isService, applied, approval, loggedIn: req.session.loggedIn})
   })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
   });
 });
-
-/*router.get('/assignment/approve/:id', (req, res) => {
-  Assignment.findOne({
-      where: {
-        id: req.params.id
-      }
-    })
-    .then(dbAssignmentData => {
-      const job_id = dbAssignmentData.job_id;
-      const assignmentUpdate = Assignment.update(
-        {approved_status: true},
-        {
-          where: {
-            id: req.params.id
-          }
-        });
-
-      const jobUpdate = Job.update(
-        {status_id: 3},
-        {
-          where: {
-            id: job_id
-          }
-        });
-      
-        Promise.all([assignmentUpdate, jobUpdate])
-        .then(([assignData, jData]) => {
-          ------------
-        })
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-    
-});*/
 
 module.exports = router;

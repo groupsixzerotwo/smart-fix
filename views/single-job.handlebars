@@ -43,21 +43,36 @@
         {{/if}}
 
       {{else}}
-      
         <p>ASSIGNMENTS</p>
-        {{#each jobData.assignments as |assignment|}}
+        {{#if approval}}
+
+          {{#each jobData.assignments as |assignment|}}
+            <p>Service provider: {{assignment.user.username}}</p>
+            <p>Service type: {{assignment.user.service.service_type}}</p>
+            <p>Order number: <span class="orderNumber">{{assignment.order_number}}</span></p>
+            <p>Cost: ${{assignment.cost}}</p>   
+            {{#if assignment.approved_status}}
+              <button class="green">ASSIGNED</button>
+            {{else}}
+              <button class="red">REJECTED</button>
+            {{/if}}
+          {{/each}}
+
+        {{else}}
+       
+          {{#each jobData.assignments as |assignment|}}
           <p>Service provider: {{assignment.user.username}}</p>
           <p>Service type: {{assignment.user.service.service_type}}</p>
           <p>Order number: <span class="orderNumber">{{assignment.order_number}}</span></p>
-          <p>Cost: ${{assignment.cost}}</p>
-          {{#if assignment.approved_status}}
-            <button class="red">ASSIGNED</button>
-          {{else}}
-            <button class="approveAssignmentBtn green">APPROVE</button>
-            <script src="/assets/javascript/approveAssignment.js"></script>
-          {{/if}}
-        {{/each}}
-       {{/if}}
+          <p>Cost: ${{assignment.cost}}</p> 
+          <button class="approveAssignmentBtn green">APPROVE</button>
+          {{/each}}
+          <script src="/assets/javascript/approveAssignment.js"></script>
+
+        {{/if}}
+        
+        
+      {{/if}}
        <p class="alertMessage"></p>
     </div>
   </div>
