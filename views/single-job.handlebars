@@ -13,6 +13,11 @@
       <p>Status: {{jobData.status.status_text}}</p>
       <p>Created on: {{format_dates jobData.createdAt}}</p>
       <p>Last updated: {{format_dates jobData.updatedAt}}</p>
+
+      {{#unless isService}}
+        <button class="jobDeleteBtn red" >Delete</button>
+        <script src="/assets/javascript/deleteJob.js"></script>
+      {{/unless}}
       
       {{#if isService}}
         {{#if applied}}
@@ -34,7 +39,7 @@
               <input type='text' id='startDate' />
             </div>-->
             <div>
-              <button class="applyJobSubmitBtn" type="submit">Submit</button>
+              <button class="applyJobSubmitBtn green" type="submit">Submit</button>
               <button class="applyJobCancelBtn" >Cancel</button>
              </div>
           </form>         

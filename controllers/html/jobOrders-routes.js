@@ -133,7 +133,10 @@ router.get('/assignment/:id', (req, res) => {
       res.status(404).json({message: 'No service found with this id'});
       return;
     }
+    
     const assignmentData = dbAssignmentData.get({plain: true});
+    const temp = assignmentData.job.job_text.split("\n");
+    assignmentData.job.job_text = temp;
     console.log({assignmentData, theuser, isService, loggedIn: req.session.loggedIn})
     res.render('single-assignment', {assignmentData, theuser, isService, loggedIn: req.session.loggedIn})
   })

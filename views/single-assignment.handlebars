@@ -1,0 +1,32 @@
+<div class="displayBox">
+  <div class="row container">
+    <div class="col s12">
+      <p>JOB DATA</p>
+      <p>{{assignmentData.job.job_title}}</p>
+      {{#each assignmentData.job.job_text as |text|}}
+        <p>{{text}}</p>
+      {{/each}}
+      <p>Customer: {{assignmentData.job.user.username}}</p>
+      <p>Address: {{assignmentData.job.job_address}}</p>
+      <p>Contact: {{assignmentData.job.job_contact}}</p>
+      <p>Email: {{assignmentData.job.user.email}}</p>
+      <p>Job status: {{assignmentData.job.status.status_text}}</p>
+      <p>Created on: {{format_dates assignmentData.job.createdAt}}</p>
+      <p>Last updated: {{format_dates assignmentData.job.updatedAt}}</p>
+
+      <p>YOUR APPLICATION</p>
+      <p>Quoted Cost: ${{assignmentData.cost}}</p>
+      <p>Order number: {{assignmentData.order_number}}</p>
+      <p>Application status: </p>
+      {{#if assignmentData.start_date}}
+        <p>Start date: {{assignmentData.start_date}}</p>
+      {{/if}}
+      {{#if assignmentData.completed_date}}
+        <p>Completed date: {{assignmentData.completed_date}}</p>
+      {{/if}}
+      <p>Applied on: {{format_dates assignmentData.createdAt}}</p>
+      <p>Last updated: {{format_dates assignmentData.updatedAt}}</p>
+      <p class="alertMessage"></p>
+    </div>
+  </div>
+</div>
