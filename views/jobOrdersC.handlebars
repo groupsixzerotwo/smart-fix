@@ -1,9 +1,9 @@
-<div class="container welcome">
+<div class="container welcome grey lighten-1 white-text">
   <h2>Customer</h2>
   <h2>Welcome {{theuser}}!</h2>
 </div>
 <div class="displayBox">  
-  <div class="row container spColumns">
+  <div class="row container">
     <!--<div class="col s4">
       <h3>Job Assignments</h3>
       {{#each assignmentData as |assignment|}}
@@ -31,11 +31,11 @@
 <div class="displayBox">  
   <div class="row container spColumns">
     <div class="col s12">
-      <button class="createJobBtn">Create New Job</button>
+      <button class="createJobBtn btn green waves-effect waves-light center"><i class="material-icons left">add</i>New Job</button>
       <div class="container" id="addNewJobForm">
         <form class="addNewJobForm">
           <div>
-            <h4>CREATE NEW JOB</h4>
+            <h4 class="blue-text">CREATE NEW JOB</h4>
           </div>
           <div>
             <label for='jobTitle'>TITLE: </label>
@@ -54,8 +54,8 @@
             <input type='text' id='jobContact' />
           </div>
           <div>
-            <button class="createJobSubmitBtn green" type="submit">Submit</button>
-            <button class="createJobCancelBtn" >Cancel</button>
+            <button class="createJobSubmitBtn btn green" type="submit">Submit</button>
+            <button class="createJobCancelBtn btn red-text transparent " >Cancel</button>
           </div>
         </form>  
         <p class="alertMessage"></p>       
