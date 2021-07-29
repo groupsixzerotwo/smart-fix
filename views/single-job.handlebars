@@ -1,0 +1,193 @@
+<div class="displayBox">
+  <div class="row container spColumns ">
+    <div class="col s12 formDisplayBox">
+      <!---JOB DATA VIEW FOR ALL--->  
+      <div>
+        <h4 class="blue-text lighten-4">{{jobData.job_title}}</h4>
+      </div>
+      <div>
+        <p class="fontHighlight">Description:  </p>
+        {{#each jobData.job_text as |text|}}
+          <p>{{text}}</p>
+        {{/each}}
+      </div>
+      <div>
+          <p class="fontHighlight">Status</p>
+          <p>{{jobData.status.status_text}}</p>
+        </div>
+      <div>
+        <p class="fontHighlight">Customer Details</p>
+      </div>
+      <div>
+        <div>
+          <p class="fontHighlight">Customer</p>
+          <p>{{jobData.user.username}}</p>
+        </div>
+        <div>
+          <p class="fontHighlight">Address:  </p>
+          <p>{{jobData.job_address}}</p>
+        </div>
+      </div>
+      <div>
+        <span class="fontHighlight">Contact:  </span><span>{{jobData.job_contact}}</span>
+      </div>
+      <div>
+        <span class="fontHighlight">Email:  </span><span>{{jobData.user.email}}</span>
+      </div>
+      <div>
+        <span class="fontHighlight">Created on:  </span><span>{{format_dates jobData.createdAt}}</span>
+      </div>
+      <div>
+        <span class="fontHighlight">Last updated:  </span><span>{{format_dates jobData.updatedAt}}</span>
+      </div>
+
+      <!---JOB DATA EDIT DELETE OPTION FOR THE CUSTOMER WHO CREATED IT---> 
+      {{#unless isService}}
+        <div class="editDeleteBtn">
+          <button class="jobEditBtn green">EDIT</button>
+          <button class="jobDeleteBtn red" >DELETE</button>
+        </div>
+        <!---EDIT FORM FOR JOB--->
+        <div class="container" id="editJobForm">
+          <form class="editJobForm">
+            <div>
+              <p>EDIT YOUR JOB</p>
+            </div>
+            <div>
+              <label for='jobEditTitle'>TITLE: </label>
+              <input type='text' id='jobEditTitle' />
+            </div>
+            <div>
+              <label for='jobEditDescription'>DESCRIPTION: </label>
+              <textarea id="jobEditDescription" class="materialize-textarea"></textarea>
+            </div>
+            <div>
+              <label for='jobEditAddress'>ADDRESS: </label>
+              <textarea class="materialize-textarea" id='jobEditAddress'></textarea>
+            </div>
+            <div>
+              <label for='jobEditContact'>CONTACT: </label>
+              <input type='text' id='jobEditContact' />
+            </div>
+            <div>
+              <button class="editJobSubmitBtn green" type="submit">Submit</button>
+              <button class="editJobCancelBtn" >Cancel</button>
+             </div>
+          </form>         
+        </div>
+        <script src="/assets/javascript/editDeleteJob.js"></script>
+      {{/unless}}
+      <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER--->      
+      {{#if isService}}
+        <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF ALREADY APPLIED FOR THE JOB--->  
+        {{#if applied}}
+
+          <h4 class="blue-text lighten-4">Your Application</h4>
+          <p>Quoted Cost: ${{yourApplication.cost}}</p>
+          <p>Order number: <span class="AssignOrderNumber">{{yourApplication.order_number}}</span></p>
+          <p>Application status: </p>
+          {{#if yourApplication.start_date}}
+            <p>Start date: {{yourApplication.start_date}}</p>
+          {{/if}}
+          {{#if yourApplication.completed_date}}
+            <p>Completed date: {{yourApplication.completed_date}}</p>
+          {{/if}}
+          <p>Applied on: {{format_dates yourApplication.createdAt}}</p>
+          <p>Last updated: {{format_dates yourApplication.updatedAt}}</p>
+          <div class="editDeleteBtn">
+            <button class="editAssignBtn green">EDIT</button>
+            <button class="deleteAssignBtn red" >DELETE</button>
+          </div>
+          <!---EDIT FORM FOR SERVICE PROVIDER IF THEY CREATED IT--->
+          <div class="container" id="editAssignForm">
+            <form class="editAssignForm">
+              <div>
+                <p>EDIT YOUR JOB</p>
+              </div>
+              <div>
+                <label for='assignEditCost'>COST: </label>
+                <input type='text' id='assignEditCost' />
+              </div>
+              <div>
+                <label for='assignEditOrderNumber'>ORDER NUMBER: </label>
+                <input type='text' id='assignEditOrderNumber' />
+              </div>
+              <div>
+                <label for='assignEditStartDate'>START DATE: </label>
+                <input type='text' id='assignEditStartDate' />
+              </div>
+              <div>
+                <label for='assignEditCompleteDate'>COMPLETE DATE: </label>
+                <input type='text' id='assignEditCompleteDate' />
+              </div>
+              <div>
+                <button class="editAssignSubmitBtn green" type="submit">Submit</button>
+                <button class="editAssignCancelBtn" >Cancel</button>
+              </div>
+            </form>         
+          </div>
+          <script src="/assets/javascript/editDeleteAssignment.js"></script>
+        <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF NOT APPLIED FOR THE JOB--->
+        {{else}}
+
+          <button class="applyJobBtn">Apply</button>
+          <div class="container" id="applyJobForm">
+            <form class="applyJobForm">
+              <div>
+                <label for='assignmentCost'>COST: </label>
+                <input type='text' id='assignmentCost' />
+              </div>
+              <div>
+                <label for='assignmentOrderNo'>ORDER#: </label>
+                <input type='text' id='assignmentOrderNo' />
+              </div>
+              <div>
+                <button class="applyJobSubmitBtn green" type="submit">Submit</button>
+                <button class="applyJobCancelBtn" >Cancel</button>
+              </div>
+            </form>         
+          </div>
+          <script src="/assets/javascript/applyNewJob.js"></script>
+        {{/if}}
+      <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS---> 
+      {{else}}
+        {{#if jobData.assignments}}
+          <h4 class="blue-text lighten-4">Application for the order</h4>
+        {{/if}}
+        <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE APPROVED ANY ASSIGNMENT--->
+        {{#if approval}}
+
+          {{#each jobData.assignments as |assignment|}}
+            <p>Service provider: {{assignment.user.username}}</p>
+            <p>Service type: {{assignment.user.service.service_type}}</p>
+            <p>Order number: <span class="orderNumber">{{assignment.order_number}}</span></p>
+            <p>Cost: ${{assignment.cost}}</p>   
+            {{#if assignment.approved_status}}
+              <button class="grey">ASSIGNED</button>
+            {{else}}
+              <button class="red">REJECTED</button>
+            {{/if}}
+          {{/each}}
+
+        <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE NOT APPROVED ANY ASSIGNMENT--->
+        {{else}}
+       
+          {{#each jobData.assignments as |assignment|}}
+          <p>Service provider: {{assignment.user.username}}</p>
+          <p>Service type: {{assignment.user.service.service_type}}</p>
+          <p>Order number: <span class="orderNumber">{{assignment.order_number}}</span></p>
+          <p>Cost: ${{assignment.cost}}</p> 
+          <button class="approveAssignmentBtn green">APPROVE</button>
+          {{/each}}
+
+          {{#if jobData.assignments}}
+          <script src="/assets/javascript/approveAssignment.js"></script>
+          {{/if}}
+        {{/if}}
+        
+        
+      {{/if}}
+       <p class="alertMessage"></p>
+    </div>
+  </div>
+</div>

@@ -2,16 +2,19 @@ const { Status } = require('../models');
 
 const statusData = [
   {  
-    status_text: 'Applied'
+    status_text: 'Job Created'
   },
   {  
-    status_text: 'Processing'
+    status_text: 'Pending User Input'
   },
   {  
-    status_text: 'Assigned'
+    status_text: 'Service Provider Confirmed'
   },
   {  
-    status_text: 'Completed'
+    status_text: 'Job Started'
+  },
+  {  
+    status_text: 'Job Completed'
   }
 ];
 

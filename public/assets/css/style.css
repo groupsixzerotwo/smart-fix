@@ -58,7 +58,7 @@ ul{
   text-align: center;
 }
 
-#displayBox {
+.displayBox {
   display: flex;
   justify-content: center;
 }
@@ -67,6 +67,7 @@ ul{
   color: red;
   display: none;
 }
+
 /*login-form {
  
   background-color: #024e76;
@@ -118,7 +119,7 @@ ul{
   margin: 5px;
 }
 
-/* button {
+button {
   background-color: #365eb3;
   border: none;
   color: white;
@@ -129,4 +130,61 @@ ul{
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-} */
+}
+
+/*--USER NAME DISPLAY--*/
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.welcome h2 {  
+  margin: 15px 0;
+  font-size: 24px;
+}
+
+.spColumns h3{
+  font-size: 26px;
+  margin: 10px;
+}
+
+.spColumns h4 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.spColumns p{
+  margin: 5px 0;
+}
+
+.spColumns a {
+  font-size: 20px;
+}
+
+/*--JOB DATA SINGLE PAGE DISPLAY--*/
+#applyJobForm {
+  display: none;
+}
+
+.alertMessage {
+  color: red;
+  display: none;
+}
+
+/*--JOB CREATE CUSTOMER PAGE DISPLAY--*/
+.addNewJobForm textarea {
+  white-space: pre-wrap;
+}
+
+#addNewJobForm, #editJobForm, #editAssignForm {
+  display: none;
+}
+
+.fontHighlight {
+  font-weight: 600;
+}
+
+.formDisplayBox {
+  text-align: center;
+}
+

@@ -61,7 +61,7 @@ Status.hasMany(Job, {
 });
 
 //Associations between job, assignment and user(service provider)
-Job.hasOne(Assignment, {
+Job.hasMany(Assignment, {
   foreignKey: 'job_id'
 });
 

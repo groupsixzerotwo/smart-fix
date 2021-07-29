@@ -21,6 +21,7 @@ Assignment.init(
     //Order number for Assignment
     order_number: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false
     },
     //Assignment start date
@@ -35,7 +36,7 @@ Assignment.init(
     },
     approved_status: {
       type: DataTypes.BOOLEAN,
-      allowNull: true
+      defaultValue: false
     },
     //job id for the assignment
     job_id: {

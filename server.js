@@ -1,8 +1,9 @@
 const express = require('express');
 const sequelize = require('./config/connection');
 const routes = require('./controllers');
+const helpers = require('./utils/helpers');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
+const hbs = exphbs.create({helpers});
 const path = require('path');
 const session = require('express-session');
 
@@ -19,7 +20,7 @@ app.set('view engine', 'handlebars');
 
 const sess = {
   secret: 'This is the group project',
-  cookie: {maxAge: 3600000},
+  cookie: {maxAge: 360000000},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({

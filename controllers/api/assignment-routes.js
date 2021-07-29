@@ -82,6 +82,46 @@ router.get('/:id', (req, res) => {
   });
 });
 
+//-----POST - FIND ONE ASSIGNMENT WITH ORDER NUMBER-----//
+router.post('/approve', (req, res) => {
+  Assignment.findOne({
+    where: {
+      order_number: req.body.order_number
+    }
+  })
+  .then(dbAssignmentData => {
+    if(!dbAssignmentData) {
+      res.status(404).json({message: 'No service found with this order number'});
+      return;
+    }
+    console.log(dbAssignmentData)
+    res.json(dbAssignmentData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err)
+  });
+});
+
+router.post('/delete', (req, res) => {
+  Assignment.destroy({
+    where: {
+      order_number: req.body.order_number
+    }
+  })
+  .then(dbAssignmentData => {
+    if (!dbAssignmentData) {
+      res.status(404).json({ message: 'No job found with this oder number' });
+      return;
+    }
+    res.json(dbAssignmentData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
 //-----POST - ADD AN ASSIGNMENT-----//
 router.post('/', (req,res) => {
   Assignment.create({
@@ -90,7 +130,7 @@ router.post('/', (req,res) => {
     start_date: req.body.start_date,
     complete_date: req.body.complete_date,
     job_id: req.body.job_id,
-    user_id: req.body.user_id
+    user_id: req.session.user_id
   })
   .then(dbAssignmentData => res.json(dbAssignmentData))
   .catch(err => {
