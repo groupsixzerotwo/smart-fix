@@ -52,30 +52,48 @@
       
       {{#if isService}}
         {{#if applied}}
-        <button>Applied</button>
+
+          <p>YOUR APPLICATION</p>
+          <p>Quoted Cost: ${{yourApplication.cost}}</p>
+          <p>Order number: {{yourApplication.order_number}}</p>
+          <p>Application status: </p>
+          {{#if yourApplication.start_date}}
+            <p>Start date: {{yourApplication.start_date}}</p>
+          {{/if}}
+          {{#if yourApplication.completed_date}}
+            <p>Completed date: {{yourApplication.completed_date}}</p>
+          {{/if}}
+          <p>Applied on: {{format_dates yourApplication.createdAt}}</p>
+          <p>Last updated: {{format_dates yourApplication.updatedAt}}</p>
+          <div class="editDeleteBtn">
+            <button class="editAssignBtn green">EDIT</button>
+            <button class="deleteAssignBtn red" >DELETE</button>
+          </div>
+          <script src="/assets/javascript/editDeleteAssignment.js"></script>
         {{else}}
-        <button class="applyJobBtn">Apply</button>
-        <div class="container" id="applyJobForm">
-          <form class="applyJobForm">
-            <div>
-              <label for='assignmentCost'>COST: </label>
-              <input type='text' id='assignmentCost' />
-            </div>
-            <div>
-              <label for='assignmentOrderNo'>ORDER#: </label>
-              <input type='text' id='assignmentOrderNo' />
-            </div>
-            <!--<div>
-              <label for='startDate'>PROPOSED START DATE: </label>
-              <input type='text' id='startDate' />
-            </div>-->
-            <div>
-              <button class="applyJobSubmitBtn green" type="submit">Submit</button>
-              <button class="applyJobCancelBtn" >Cancel</button>
-             </div>
-          </form>         
-        </div>
-        <script src="/assets/javascript/applyNewJob.js"></script>
+
+          <button class="applyJobBtn">Apply</button>
+          <div class="container" id="applyJobForm">
+            <form class="applyJobForm">
+              <div>
+                <label for='assignmentCost'>COST: </label>
+                <input type='text' id='assignmentCost' />
+              </div>
+              <div>
+                <label for='assignmentOrderNo'>ORDER#: </label>
+                <input type='text' id='assignmentOrderNo' />
+              </div>
+              <!--<div>
+                <label for='startDate'>PROPOSED START DATE: </label>
+                <input type='text' id='startDate' />
+              </div>-->
+              <div>
+                <button class="applyJobSubmitBtn green" type="submit">Submit</button>
+                <button class="applyJobCancelBtn" >Cancel</button>
+              </div>
+            </form>         
+          </div>
+          <script src="/assets/javascript/applyNewJob.js"></script>
         {{/if}}
 
       {{else}}

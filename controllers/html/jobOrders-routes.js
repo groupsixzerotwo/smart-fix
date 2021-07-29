@@ -187,8 +187,10 @@ router.get('/job/:id', (req, res) => {
     const jobData = dbJobData.get({plain: true});
     let applied = false;
     let approval = false;
+    let yourApplication = {};
     const temp = jobData.job_text.split("\n");
     jobData.job_text = temp;
+
     jobData.assignments.forEach(assignment => {
       console.log(assignment)
       if (assignment.approved_status) {
@@ -196,10 +198,11 @@ router.get('/job/:id', (req, res) => {
       };
       if (assignment.user.id === req.session.user_id) {
         applied = true;
+        yourApplication = assignment;
       };
     });
-    console.log({jobData, theuser, isService, applied, approval, loggedIn: req.session.loggedIn})
-    res.render('single-job', {jobData, theuser, isService, applied, approval, loggedIn: req.session.loggedIn})
+    console.log({jobData, theuser, isService, applied, approval, yourApplication, loggedIn: req.session.loggedIn})
+    res.render('single-job', {jobData, theuser, isService, applied, approval, yourApplication, loggedIn: req.session.loggedIn})
   })
   .catch(err => {
     console.log(err);
