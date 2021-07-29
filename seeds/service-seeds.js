@@ -2,13 +2,19 @@ const { Service } = require('../models');
 
 const serviceData = [
   {  
-    service_type: 'Electrical'
-  },
-  {  
     service_type: 'Plumbing'
   },
   {  
-    service_type: 'Carpenting'
+    service_type: 'Snow Removal'
+  },
+  {  
+    service_type: 'Electrical Repairs'
+  },
+  {  
+    service_type: 'Window Cleaning'
+  },
+  {  
+    service_type: 'Yard Work'
   }
 ];
 

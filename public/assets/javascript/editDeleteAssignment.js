@@ -79,7 +79,7 @@ const editAssignBtnHandler = async (event) => {
       document.querySelector('#editAssignForm').style.display = "block";
       console.log(data)
       document.querySelector('#assignEditCost').value = data.cost;
-      document.querySelector('#assignEditOrderNumber').value = data.order_number;
+      //document.querySelector('#assignEditOrderNumber').value = data.order_number;
       document.querySelector('#assignEditStartDate').value = data.start_date;
       document.querySelector('#assignEditCompleteDate').value = data.complete_date;
     })
@@ -88,7 +88,7 @@ const editAssignBtnHandler = async (event) => {
 const editAssignSubmitBtnHandler = async (event) => {
   event.preventDefault();
   cost = document.querySelector('#assignEditCost').value;
-  order_number = document.querySelector('#assignEditOrderNumber').value;
+  order_number = document.querySelector('.AssignOrderNumber').innerHTML;
   start_date = document.querySelector('#assignEditStartDate').value;
   complete_date = document.querySelector('#assignEditCompleteDate').value;
   let job_id = window.location.toString().split('/')[
