@@ -42,12 +42,10 @@ ul{
     padding: 2vw;
 }
 
-
-
 .form-container {
     background-image: url('../img/logo.jpeg');
     margin: 100px;
-    /*margin-left: 375px;*/
+    margin-left: 375px;
     text-align: center;
     border: 3px solid #024e76;
     padding: 25px;
@@ -58,17 +56,12 @@ ul{
   text-align: center;
 }
 
-.displayBox {
-  display: flex;
-  justify-content: center;
-}
-
 .loginAlert {
   color: red;
   display: none;
 }
 
-/*login-form {
+/* login-form {
  
   background-color: #024e76;
   padding: 20px;
@@ -77,7 +70,7 @@ ul{
   margin: 3.5%;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   border-radius: 15px;
-}*/
+} */
 
 .pageHeader{
   display: flex;
@@ -119,7 +112,11 @@ ul{
   margin: 5px;
 }
 
-button {
+.createJobBtn{
+  padding-bottom: 0.5vw;
+}
+
+/* button {
   background-color: #365eb3;
   border: none;
   color: white;
@@ -130,7 +127,7 @@ button {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-}
+} */
 
 /*--USER NAME DISPLAY--*/
 .welcome {
@@ -143,7 +140,7 @@ button {
   font-size: 24px;
 }
 
-.spColumns h3{
+/* .spColumns h3{
   font-size: 26px;
   margin: 10px;
 }
@@ -159,7 +156,7 @@ button {
 
 .spColumns a {
   font-size: 20px;
-}
+} */
 
 /*--JOB DATA SINGLE PAGE DISPLAY--*/
 #applyJobForm {
@@ -176,15 +173,15 @@ button {
   white-space: pre-wrap;
 }
 
+.addNewJobForm{
+  padding: 2vw;
+}
+
 #addNewJobForm, #editJobForm, #editAssignForm {
   display: none;
 }
 
-.fontHighlight {
-  font-weight: 600;
-}
-
-.formDisplayBox {
+/* .formDisplayBox {
   text-align: center;
-}
+} */
 

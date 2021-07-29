@@ -1,57 +1,49 @@
 <div class="displayBox">
-  <div class="row container spColumns ">
-    <div class="col s12 formDisplayBox">
+  <div class="row container">
+    <div class="formDisplayBox">
       <!---JOB DATA VIEW FOR ALL--->  
       <div>
-        <h4 class="blue-text lighten-4">{{jobData.job_title}}</h4>
+        <h4 class="blue lighten-3 white-text center col s12">{{jobData.job_title}}</h4>
       </div>
-      <div>
-        <p class="fontHighlight">Description:  </p>
-        {{#each jobData.job_text as |text|}}
-          <p>{{text}}</p>
-        {{/each}}
+
+      <div class="row container">
+        <h5 class="blue-text center">Job Details</h5>
+
+        <ul>
+          <li class="col s12">
+            <p><b>Description: </b>
+          {{#each jobData.job_text as |text|}}
+          {{text}}
+          {{/each}}</p>
+          </li>
+          <li class="col s12"><p><b>Status: </b>{{jobData.status.status_text}}</p></li>
+          <li class="col s12"><p><b>Created on: </b>{{format_dates jobData.createdAt}}</p></li>
+          <li class="col s12"><p><b>Last updated: </b>{{format_dates jobData.updatedAt}}</p></li>
+        </ul>
       </div>
-      <div>
-          <p class="fontHighlight">Status</p>
-          <p>{{jobData.status.status_text}}</p>
-        </div>
-      <div>
-        <p class="fontHighlight">Customer Details</p>
-      </div>
-      <div>
-        <div>
-          <p class="fontHighlight">Customer</p>
-          <p>{{jobData.user.username}}</p>
-        </div>
-        <div>
-          <p class="fontHighlight">Address:  </p>
-          <p>{{jobData.job_address}}</p>
-        </div>
-      </div>
-      <div>
-        <span class="fontHighlight">Contact:  </span><span>{{jobData.job_contact}}</span>
-      </div>
-      <div>
-        <span class="fontHighlight">Email:  </span><span>{{jobData.user.email}}</span>
-      </div>
-      <div>
-        <span class="fontHighlight">Created on:  </span><span>{{format_dates jobData.createdAt}}</span>
-      </div>
-      <div>
-        <span class="fontHighlight">Last updated:  </span><span>{{format_dates jobData.updatedAt}}</span>
+
+      <div class="row container">
+        <h5 class="blue-text center">Customer Details</h5>
+
+        <ul>
+          <li class="col s12"><p><b>Name: </b>{{jobData.user.username}}</p></li>
+          <li class="col s12"><p><b>Address: </b>{{jobData.job_address}}</p></li>
+          <li class="col s12"><p><b>Contact: </b>{{jobData.job_contact}}</p></li>
+          <li class="col s12"><p><b>Email: </b>{{jobData.user.email}}</p></li>
+        </ul>
       </div>
 
       <!---JOB DATA EDIT DELETE OPTION FOR THE CUSTOMER WHO CREATED IT---> 
       {{#unless isService}}
-        <div class="editDeleteBtn">
-          <button class="jobEditBtn green">EDIT</button>
-          <button class="jobDeleteBtn red" >DELETE</button>
+        <div class="editDeleteBtn center">
+          <button class="jobEditBtn btn green">EDIT</button>
+          <button class="jobDeleteBtn btn red" >DELETE</button>
         </div>
         <!---EDIT FORM FOR JOB--->
         <div class="container" id="editJobForm">
           <form class="editJobForm">
             <div>
-              <p>EDIT YOUR JOB</p>
+              <h5 class="blue-text center">Edit Job Request</h5>
             </div>
             <div>
               <label for='jobEditTitle'>TITLE: </label>
@@ -70,8 +62,8 @@
               <input type='text' id='jobEditContact' />
             </div>
             <div>
-              <button class="editJobSubmitBtn green" type="submit">Submit</button>
-              <button class="editJobCancelBtn" >Cancel</button>
+              <button class="editJobSubmitBtn btn green" type="submit">Submit</button>
+              <button class="editJobCancelBtn btn red-text transparent" >Cancel</button>
              </div>
           </form>         
         </div>
@@ -82,27 +74,40 @@
         <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF ALREADY APPLIED FOR THE JOB--->  
         {{#if applied}}
 
-          <h4 class="blue-text lighten-4">Your Application</h4>
-          <p>Quoted Cost: ${{yourApplication.cost}}</p>
-          <p>Order number: <span class="AssignOrderNumber">{{yourApplication.order_number}}</span></p>
-          <p>Application status: </p>
-          {{#if yourApplication.start_date}}
-            <p>Start date: {{yourApplication.start_date}}</p>
-          {{/if}}
-          {{#if yourApplication.completed_date}}
-            <p>Completed date: {{yourApplication.completed_date}}</p>
-          {{/if}}
-          <p>Applied on: {{format_dates yourApplication.createdAt}}</p>
-          <p>Last updated: {{format_dates yourApplication.updatedAt}}</p>
-          <div class="editDeleteBtn">
-            <button class="editAssignBtn green">EDIT</button>
-            <button class="deleteAssignBtn red" >DELETE</button>
+        <div class="row">
+
+          <h5 class="blue-text grey lighten-4 center">Your Application</h5>
+
+          <ul>
+            <li><p><b>Quoted Cost: </b>${{yourApplication.cost}}</p></li>
+            <li><p><b>Order number: </b><span class="AssignOrderNumber">{{yourApplication.order_number}}</span></p></li>
+            <li class="col s12 center"><h6 class="blue-text">Application status</h6></li>
+            <li>
+              {{#if yourApplication.start_date}}
+              <p><b>Start date: </b>{{yourApplication.start_date}}</p>
+              {{/if}}
+            </li>
+            <li>
+            {{#if yourApplication.completed_date}}
+            <p><b>Completed date: </b>{{yourApplication.completed_date}}</p>
+            {{/if}}
+            </li>
+            <li><p><b>Applied on: </b>{{format_dates yourApplication.createdAt}}</p></li>
+            <li><p><b>Last updated: </b>{{format_dates yourApplication.updatedAt}}</p></li>
+          </ul>
+        
+        </div>
+
+          <div class="editDeleteBtn center">
+            <button class="editAssignBtn btn green">EDIT</button>
+            <button class="deleteAssignBtn btn red" >DELETE</button>
           </div>
+          
           <!---EDIT FORM FOR SERVICE PROVIDER IF THEY CREATED IT--->
           <div class="container" id="editAssignForm">
             <form class="editAssignForm">
               <div>
-                <p>EDIT YOUR JOB</p>
+                <h5 class="blue-text center">Edit Job Request</h5>
               </div>
               <div>
                 <label for='assignEditCost'>COST: </label>
@@ -117,8 +122,8 @@
                 <input type='text' id='assignEditCompleteDate' />
               </div>
               <div>
-                <button class="editAssignSubmitBtn green" type="submit">Submit</button>
-                <button class="editAssignCancelBtn" >Cancel</button>
+                <button class="editAssignSubmitBtn btn green" type="submit">Submit</button>
+                <button class="editAssignCancelBtn btn red-text transparent" >Cancel</button>
               </div>
             </form>         
           </div>
@@ -126,7 +131,10 @@
         <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF NOT APPLIED FOR THE JOB--->
         {{else}}
 
-          <button class="applyJobBtn">Apply</button>
+          <div class="center">
+            <button class="applyJobBtn btn green">Apply</button>
+          </div>
+
           <div class="container" id="applyJobForm">
             <form class="applyJobForm">
               <div>
@@ -138,8 +146,8 @@
                 <input type='text' id='assignmentOrderNo' />
               </div>
               <div>
-                <button class="applyJobSubmitBtn green" type="submit">Submit</button>
-                <button class="applyJobCancelBtn" >Cancel</button>
+                <button class="applyJobSubmitBtn btn green" type="submit">Submit</button>
+                <button class="applyJobCancelBtn btn red-text transparent" >Cancel</button>
               </div>
             </form>         
           </div>
@@ -159,9 +167,9 @@
             <p>Order number: <span class="orderNumber">{{assignment.order_number}}</span></p>
             <p>Cost: ${{assignment.cost}}</p>   
             {{#if assignment.approved_status}}
-              <button class="grey">ASSIGNED</button>
+              <button class="grey btn">ASSIGNED</button>
             {{else}}
-              <button class="red">REJECTED</button>
+              <button class="red btn">REJECTED</button>
             {{/if}}
           {{/each}}
 
@@ -173,7 +181,7 @@
           <p>Service type: {{assignment.user.service.service_type}}</p>
           <p>Order number: <span class="orderNumber">{{assignment.order_number}}</span></p>
           <p>Cost: ${{assignment.cost}}</p> 
-          <button class="approveAssignmentBtn green">APPROVE</button>
+          <button class="approveAssignmentBtn btn green">APPROVE</button>
           {{/each}}
 
           {{#if jobData.assignments}}
