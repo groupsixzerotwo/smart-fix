@@ -1,19 +1,45 @@
 <div class="displayBox">
-  <div class="row container">
-    <div class="col s12">
+  <div class="row container spColumns ">
+    <div class="col s12 formDisplayBox">
       <!---JOB DATA VIEW FOR ALL--->  
-      <p>JOB DATA</p>
-      <p>{{jobData.job_title}}</p>
-      {{#each jobData.job_text as |text|}}
-        <p>{{text}}</p>
-      {{/each}}
-      <p>Customer: {{jobData.user.username}}</p>
-      <p>Address: {{jobData.job_address}}</p>
-      <p>Contact: {{jobData.job_contact}}</p>
-      <p>Email: {{jobData.user.email}}</p>
-      <p>Status: {{jobData.status.status_text}}</p>
-      <p>Created on: {{format_dates jobData.createdAt}}</p>
-      <p>Last updated: {{format_dates jobData.updatedAt}}</p>
+      <div>
+        <h4 class="blue-text lighten-4">{{jobData.job_title}}</h4>
+      </div>
+      <div>
+        <p class="fontHighlight">Description:  </p>
+        {{#each jobData.job_text as |text|}}
+          <p>{{text}}</p>
+        {{/each}}
+      </div>
+      <div>
+          <p class="fontHighlight">Status</p>
+          <p>{{jobData.status.status_text}}</p>
+        </div>
+      <div>
+        <p class="fontHighlight">Customer Details</p>
+      </div>
+      <div>
+        <div>
+          <p class="fontHighlight">Customer</p>
+          <p>{{jobData.user.username}}</p>
+        </div>
+        <div>
+          <p class="fontHighlight">Address:  </p>
+          <p>{{jobData.job_address}}</p>
+        </div>
+      </div>
+      <div>
+        <span class="fontHighlight">Contact:  </span><span>{{jobData.job_contact}}</span>
+      </div>
+      <div>
+        <span class="fontHighlight">Email:  </span><span>{{jobData.user.email}}</span>
+      </div>
+      <div>
+        <span class="fontHighlight">Created on:  </span><span>{{format_dates jobData.createdAt}}</span>
+      </div>
+      <div>
+        <span class="fontHighlight">Last updated:  </span><span>{{format_dates jobData.updatedAt}}</span>
+      </div>
 
       <!---JOB DATA EDIT DELETE OPTION FOR THE CUSTOMER WHO CREATED IT---> 
       {{#unless isService}}
@@ -56,7 +82,7 @@
         <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF ALREADY APPLIED FOR THE JOB--->  
         {{#if applied}}
 
-          <p>YOUR APPLICATION</p>
+          <h4 class="blue-text lighten-4">Your Application</h4>
           <p>Quoted Cost: ${{yourApplication.cost}}</p>
           <p>Order number: <span class="AssignOrderNumber">{{yourApplication.order_number}}</span></p>
           <p>Application status: </p>
@@ -125,7 +151,9 @@
         {{/if}}
       <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS---> 
       {{else}}
-        <p>ASSIGNMENTS</p>
+        {{#if jobData.assignments}}
+          <h4 class="blue-text lighten-4">Application for the order</h4>
+        {{/if}}
         <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE APPROVED ANY ASSIGNMENT--->
         {{#if approval}}
 
@@ -135,7 +163,7 @@
             <p>Order number: <span class="orderNumber">{{assignment.order_number}}</span></p>
             <p>Cost: ${{assignment.cost}}</p>   
             {{#if assignment.approved_status}}
-              <button class="green">ASSIGNED</button>
+              <button class="grey">ASSIGNED</button>
             {{else}}
               <button class="red">REJECTED</button>
             {{/if}}
@@ -151,8 +179,10 @@
           <p>Cost: ${{assignment.cost}}</p> 
           <button class="approveAssignmentBtn green">APPROVE</button>
           {{/each}}
-          <script src="/assets/javascript/approveAssignment.js"></script>
 
+          {{#if jobData.assignments}}
+          <script src="/assets/javascript/approveAssignment.js"></script>
+          {{/if}}
         {{/if}}
         
         

@@ -8,7 +8,7 @@
       <h3>Job Assignments</h3>
       {{#each assignmentData as |assignment|}}
         <div class="card-panel grey lighten-4">
-          <a class="light-blue-text lighten-3" href="/orders/assignment/{{assignment.id}}">{{assignment.job.job_title}}</a>
+          <a class="light-blue-text lighten-3" href="/orders/job/{{assignment.job.id}}">{{assignment.job.job_title}}</a>
           <p class="black-text">Applied on {{format_dates assignment.createdAt}}</p>
           <p class="black-text">Status - {{assignment.job.status.status_text}}</p>
           <p class="black-text">Last updated - {{format_dates assignment.job.updated_at}}</p>

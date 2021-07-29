@@ -122,8 +122,13 @@ button {
 }
 
 .spColumns h3{
-  font-size: 24px;
+  font-size: 26px;
   margin: 10px;
+}
+
+.spColumns h4 {
+  font-size: 24px;
+  text-align: center;
 }
 
 .spColumns p{
@@ -151,4 +156,12 @@ button {
 
 #addNewJobForm, #editJobForm, #editAssignForm {
   display: none;
+}
+
+.fontHighlight {
+  font-weight: 600;
+}
+
+.formDisplayBox {
+  text-align: center;
 }

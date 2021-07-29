@@ -21,6 +21,7 @@ Assignment.init(
     //Order number for Assignment
     order_number: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false
     },
     //Assignment start date

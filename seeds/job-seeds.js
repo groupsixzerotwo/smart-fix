@@ -14,8 +14,8 @@ const jobData = [
     job_text: 'Replacing the door',
     job_address: '222 ABC Ave, Toronto, ON, L5E',
     job_contact: '9997979999',
-    user_id: 4,
-    status_id: 4
+    user_id: 5,
+    status_id: 1
   }
 ];
 

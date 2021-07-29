@@ -95,7 +95,7 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/assignment/:id', (req, res) => {
+/*router.get('/assignment/:id', (req, res) => {
   const theuser = req.session.username;
   const isService = req.session.service_id;
   Assignment.findOne({
@@ -144,7 +144,7 @@ router.get('/assignment/:id', (req, res) => {
     console.log(err);
     res.status(500).json(err)
   });
-});
+});*/
 
 router.get('/job/:id', (req, res) => {
   const theuser = req.session.username;
