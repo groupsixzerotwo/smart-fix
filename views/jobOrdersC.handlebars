@@ -1,0 +1,66 @@
+<div class="container welcome grey lighten-1 white-text">
+  <h2>Customer</h2>
+  <h2>Welcome {{theuser}}!</h2>
+</div>
+<div class="displayBox">  
+  <div class="row container">
+    <!--<div class="col s4">
+      <h3>Job Assignments</h3>
+      {{#each assignmentData as |assignment|}}
+        <div class="card-panel grey lighten-4">
+          <a class="light-blue-text lighten-3" href="/orders/assignment/{{assignment.id}}">{{assignment.job.job_title}}</a>
+          <p class="black-text">Applied on {{format_dates assignment.createdAt}}</p>
+          <p class="black-text">Status - {{assignment.job.status.status_text}}</p>
+          <p class="black-text">Last updated - {{format_dates assignment.job.updated_at}}</p>
+        </div>
+      {{/each}}
+    </div>-->
+    <h3>Your Jobs</h3>
+    {{#each jobData as |job|}}
+      <div class="col s6">
+        <div class="card-panel grey lighten-4">
+          <a class="light-blue-text lighten-3" href="/orders/job/{{job.id}}">{{job.job_title}}</a>
+          <p class="black-text">Created by {{job.user.username}} on {{format_dates job.created_at}}</p>
+          <p class="black-text">Status - {{job.status.status_text}}</p>
+          <p class="black-text">Last updated - {{format_dates job.updated_at}}</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+<div class="displayBox">  
+  <div class="row container spColumns">
+    <div class="col s12">
+      <button class="createJobBtn btn green waves-effect waves-light center"><i class="material-icons left">add</i>New Job</button>
+      <div class="container" id="addNewJobForm">
+        <form class="addNewJobForm">
+          <div>
+            <h4 class="blue-text">CREATE NEW JOB</h4>
+          </div>
+          <div>
+            <label for='jobTitle'>TITLE: </label>
+            <input type='text' id='jobTitle' />
+          </div>
+          <div>
+            <label for='jobText'>DESCRIPTION: </label>
+            <textarea id="jobText" class="materialize-textarea"></textarea>
+          </div>
+          <div>
+            <label for='jobAddress'>ADDRESS: </label>
+            <textarea class="materialize-textarea" id='jobAddress'></textarea>
+          </div>
+          <div>
+            <label for='jobContact'>CONTACT: </label>
+            <input type='text' id='jobContact' />
+          </div>
+          <div>
+            <button class="createJobSubmitBtn btn green" type="submit">Submit</button>
+            <button class="createJobCancelBtn btn red-text transparent " >Cancel</button>
+          </div>
+        </form>  
+        <p class="alertMessage"></p>       
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/assets/javascript/createNewJob.js"></script>

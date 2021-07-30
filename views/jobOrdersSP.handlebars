@@ -1,0 +1,30 @@
+<div class="container welcome grey lighten-1 white-text">
+  <h2>Service provider</h2>
+  <h2>Welcome {{theuser}}!</h2>
+</div>
+<div class="displayBox">  
+  <div class="row container spColumns">
+    <div class="col s4">
+      <h3>Job Assignments</h3>
+      {{#each assignmentData as |assignment|}}
+        <div class="card-panel grey lighten-4">
+          <a class="light-blue-text lighten-3" href="/orders/job/{{assignment.job.id}}">{{assignment.job.job_title}}</a>
+          <p class="black-text">Applied on {{format_dates assignment.createdAt}}</p>
+          <p class="black-text">Status - {{assignment.job.status.status_text}}</p>
+          <p class="black-text">Last updated - {{format_dates assignment.job.updated_at}}</p>
+        </div>
+      {{/each}}
+    </div>
+    <div class="col s8">
+      <h3>See all Jobs</h3>
+      {{#each jobData as |job|}}
+        <div class="card-panel grey lighten-4">
+          <a class="light-blue-text lighten-3" href="/orders/job/{{job.id}}">{{job.job_title}}</a>
+          <p class="black-text">Created by {{job.user.username}} on {{format_dates job.createdAt}}</p>
+          <p class="black-text">Status - {{job.status.status_text}}</p>
+          <p class="black-text">Last updated - {{format_dates job.updatedAt}}</p>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
