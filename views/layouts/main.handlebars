@@ -7,30 +7,37 @@
 
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
-  
+
+  <!-- material icon -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <link href="/assets/css/style.css" rel="stylesheet">
 
   <title>Smart-Fix</title>
 </head>
 <body>
-  <header class="container row pageHeader">
-    <h1 class="col s6">
-      <a href="/"><img class="logo" height="60" src="/assets/img/logo.jpeg" alt="logo">SMART FIX</a>
-    </h1>
-    <div class="col user-signing">
+  <header>
+    <div class="container">
+      <div class="row">
+        <h1 class="col m12 l6 center">
+          <a href="/"><img class="logo" height="60" src="/assets/img/logo.jpeg" alt="logo">SMART FIX</a>
+        </h1>
+
+        <div class="col s12 m12 l6 center user-signing">
           {{#if loggedIn}}
-          <!--<a href="/dashboard" class="col s3">Dashboard</a>-->
-          <button id="logout" class="col btn waves-effect waves-light blue">Sign Out</button>
+          <button id="logout" class="btn waves-effect waves-light blue logout right">Sign Out</button>
           {{else}}
-          <a href="/login"><button class="col btn waves-effect waves-light blue">Sign In</button></a>
-          <a href="/signup"><button class="col btn waves-effect waves-light green">Register</button></a>
+          <a href="/login"><button class="btn button is-primary waves-effect waves-light blue hide-on-small-only">Sign In</button></a>
+          <a href="/signup"><button class="btn waves-effect waves-light green hide-on-small-only">Register</button></a>
           {{/if}}
+        </div>
+      </div>
     </div>
   </header>
 
-  <nav class="container row blue darken-3">
+  <!-- regular navbar for larger screens -->
+  <nav class="container blue darken-3 hide-on-med-and-down">
+    <div class="row">
     <ul class="col s12">
       {{#if loggedIn}}
       <li><a class="col s3" href="/orders">Order</a></li>
@@ -42,6 +49,30 @@
     </ul>
   </nav>
 
+<!-- dropdown menu for medium and smaller screens -->
+  <div class="hide-on-large-only container">
+
+    <!-- Dropdown Trigger -->
+    <a class='dropdown-button btn btn-large blue darken-3' data-target='mydropdown'><i class="material-icons">menu</i></a>
+
+    <ul  class="dropdown-content" id="mydropdown">
+      {{#if loggedIn}}
+      <li><a class="blue-text" href="/orders">Order</a></li>
+      {{/if}}
+      <li><a class="blue-text" href="/forums">Forums</a></li>
+      <li><a class="blue-text" href="/#services">Services</a></li>
+      <li><a class="blue-text" href="/#about">About</a></li>
+      <li><a class="blue-text" href="/#contact">Contact</a></li>
+
+      <div class="hide-on-med-only">
+        <li class="divider"></li>
+        {{#unless loggedIn}}
+        <li><a href="/login" class="waves-effect waves-light blue white-text">Sign In</a></li>
+        <li><a href="/signup" class="waves-effect waves-light green white-text">Register</a></li>
+        {{/unless}}
+      </div>
+      </ul>
+  </div>
 
   <main>
     {{{body}}}
@@ -75,5 +106,14 @@
   <script type="text/javascript" src="/assets/javascript/logout.js"></script>
   {{/if}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<!-- for medium and smaller screen drop-down menu -->
+  <script>
+    var dropdowns = document.querySelectorAll('.dropdown-button')
+      for (var i = 0; i < dropdowns.length; i++){
+      M.Dropdown.init(dropdowns[i]);
+    }
+  </script>
+
 </body>
 </html>

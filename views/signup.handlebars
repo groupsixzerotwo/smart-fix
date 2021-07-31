@@ -1,72 +1,64 @@
-<div class="displayBox">
-  <div class='form-container'>
-    <form class="signup-form">
-      <div>
-        <label for="username-signup">USERNAME:</label>
-        <input type="text" id="username-signup" />
-      </div>
-      <div>
-        <label for="email-signup">EMAIL:</label>
-        <input type="text" id="email-signup" />
-      </div>
-      <div>
-        <label for="password-signup">PASSWORD:</label>
-        <input type="password" id="password-signup" />
-      </div>
-      <!--<div>
-        <p>Are you registering as a service provider?</p>
-        
-        <input type="radio" id="service-yes" name="service" value="Yes">
-        <label for="service-yes">Yes</label>
-        <input type="radio" id="service-no" name="service" value="No">
-        <label for="service-no">No</label> 
-      </div>-->
-      <div>
-        <p>Are you registering as a service provider?</p>
-        <div class="serviceYesNo">
-          <p>
-            <label>
-              <input name="serviceYesNo" type="radio" value="Yes" id="service-yes"/>
-              <span>Yes</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input name="serviceYesNo" type="radio" checked value="No" id="service-no"/>
-              <span>No</span>
-            </label>
-          </p>
-        </div>
-      </div>  
-      <!--<div>
-        <select name="service-type">
-          <option value="null" disabled>Please select srvice type</option>
-          {{#each services}}
-            <option value="{{id}}">{{service_type}}</option>
-          {{/each}}
-        </select>
-      </div>-->
-      <div action="#" class="service-type">
-        <p>Please select the type of service you will be providing!</p>
+<form class="signup-form">
+  <div class="container">
+    <div class="row">
+      <ul class="col m8 offset-m2">
+        <li class="col s12 input-field">
+        <i class="material-icons prefix">account_circle</i>
+        <label for="username">Username</label>
+        <input type="text" id="username" class="validate username-signup"/>
+        </li>
+
+        <li class="col s12 input-field">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate email-signup">
+          <label for="email">Email</label>
+        </li>
+
+        <li class="col s12 input-field">
+          <i class="material-icons prefix">lock</i>
+          <input type="password" id="password" class="validate password-signup"/>
+          <label for="password">Password</label>
+        </li>
+
+        <li class="loginAlert"></li>
+      </ul>
+
+    <div class="col m8 offset-m3">
+      {{!-- Checking if the user is a service provider --}}
+      <p class="col s12 m6 center">Are you registering as a service provider?</p>
+      <div class="serviceYesNo col s12 m3 center">
+        <p>
+          <label>
+            <input name="serviceYesNo" type="radio" value="Yes" id="service-yes" class="with-gap"/>
+            <span>Yes</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input name="serviceYesNo" type="radio" checked value="No" id="service-no" class="with-gap"/>
+            <span>No</span>
+          </label>
+        </p>
+      </div> 
+    </div>
+
+    <div action="#" class="service-type col m8 offset-m2 center card z-depth-3">
+      <p class="blue-text">Please select the type of service you will be providing.</p>
         <div class="service-list">
           {{#each services}}
           <p>
             <label>
-              <input name="service-list" type="radio" value="{{id}}"/>
+              <input name="service-list" type="radio" class="with-gap" value="{{id}}"/>
               <span>{{service_type}}</span>
             </label>
           </p>
           {{/each}}
         </div>
-      </div>  
-      <div>
-        <button class="col s3 btn waves-effect waves-light green register-btn" type="submit">Register</button>
-        <!--<button type="submit">Signup</button> -->
-      </div>
-      <div class="loginAlert">
+    </div>
 
-      </div>
-    </form>
-  </div>
-</div>
+    <div class="col s12 m8 offset-m2 center">
+      <button class="btn waves-effect waves-light green register-btn" type="submit"><i class="material-icons left">how_to_reg</i>Register</button>
+    </div>
+</form>
+
 <script src="/assets/javascript/signup.js"></script>
