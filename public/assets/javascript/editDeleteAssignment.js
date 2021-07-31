@@ -1,6 +1,11 @@
 const deleteAssignBtnHandler = async () => {
   const order_number = document.querySelector('.AssignOrderNumber').innerHTML;
   if (order_number) {
+    getAssignmentId(order_number).then(async (assignmentData) => {
+      if (assignmentData.approved_status) {
+        //----------------------------
+      }
+    })
     const response = await fetch(`/api/assignment/delete`, {
       method: 'POST',
       body: JSON.stringify({
@@ -24,7 +29,7 @@ const editAssignCancelBtnHandler = (event) => {
 };
 
 const getAssignmentId = async (order_number) => {
-  const assignData = await fetch(`/api/assignment/approve`, {
+  const assignData = await fetch(`/api/assignment/orderNum`, {
     method: 'POST',
     body: JSON.stringify({
       order_number

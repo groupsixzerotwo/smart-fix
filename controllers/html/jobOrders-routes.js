@@ -65,17 +65,17 @@ router.get('/', (req, res) => {
 
     Promise.all([dbAssignmentData, dbJobData])
       .then(([assignData, jData]) => {
-        let assignmentData = [];
+        //let assignmentData = [];
         let jobData = [];
-        assignData.forEach(assignment => {
-          let eachAssign = assignment.get({plain: true});
+        const assignmentData = assignData.map(assignment => assignment.get({plain: true}));
+          /*let eachAssign = assignment.get({plain: true});
           if (assignment.approved_status && assignment.job.status.id > 2) {
             eachAssign.application_accepted = true;
           } else {
             eachAssign.application_accepted = false;
           }
           assignmentData.push(eachAssign);
-        });
+        });*/
 
         jData.forEach(job => {         
           let eachjob = job.get({plain: true});

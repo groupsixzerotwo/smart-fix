@@ -83,7 +83,7 @@ router.get('/:id', (req, res) => {
 });
 
 //-----POST - FIND ONE ASSIGNMENT WITH ORDER NUMBER-----//
-router.post('/approve', (req, res) => {
+router.post('/orderNum', (req, res) => {
   Assignment.findOne({
     where: {
       order_number: req.body.order_number
