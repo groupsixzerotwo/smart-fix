@@ -8,5 +8,14 @@ module.exports = {
       return `${word}s`;
     }
     return word;
+  },
+  getAssignStatus: assignment => {
+    if (assignment.job.status.id > 2 && assignment.approved_status) {
+      return "Accepted";
+    } else if (assignment.job.status.id > 2 && !assignment.approved_status) {
+      return "Rejected";
+    } else {
+      return "Processing";
+    }
   }
 }

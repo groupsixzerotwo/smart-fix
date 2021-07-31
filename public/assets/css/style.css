@@ -102,6 +102,7 @@ ul{
   display: none;
 }
 
+/*--BACK BUTTON--*/
 .backButton {
   display: flex;
   line-height: .1em;
@@ -110,4 +111,10 @@ ul{
 .backClick {
   display: flex;
   cursor: pointer;
+}
+
+.allAssignmentList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
