@@ -1,10 +1,10 @@
-<div class="container welcome grey lighten-1 white-text">
-  <h2>Service provider</h2>
-  <h2>Welcome {{theuser}}!</h2>
+<div class="container welcome row">
+  <h2 class="col s12 center">Welcome {{theuser}}!</h2>
+  <p class="col s12 center">(service provider)</p>
 </div>
 <div class="displayBox">  
-  <div class="row container spColumns">
-    <div class="col s4">
+  <div class="row container">
+    <div class="col m12 l4">
       <h3>Job Assignments</h3>
       {{#each assignmentData as |assignment|}}
         <div class="card-panel grey lighten-4">
@@ -15,7 +15,7 @@
         </div>
       {{/each}}
     </div>
-    <div class="col s8">
+    <div class="col m12 l8">
       <h3>See all Jobs</h3>
       {{#each jobData as |job|}}
         <div class="card-panel grey lighten-4">
