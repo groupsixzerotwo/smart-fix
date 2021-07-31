@@ -1,6 +1,6 @@
 <div class="container">
 
-    <!---JOB DATA EDIT DELETE OPTION FOR THE CUSTOMER WHO CREATED IT---> 
+  <!---JOB DATA EDIT DELETE OPTION FOR THE CUSTOMER WHO CREATED IT---> 
   {{#unless isService}}
   <div class="editDeleteBtn right">
     <button class="jobEditBtn btn-floating btn-large hoverable green" title="Edit"><i class="material-icons left">edit</i></button>
@@ -93,11 +93,16 @@
   <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER--->      
   {{#if isService}}
   <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF ALREADY APPLIED FOR THE JOB--->  
+   <div class="editDeleteBtn right">
+    <button class="editAssignBtn btn-floating hoverable green" title="Edit"><i class="material-icons left">edit</i></button>
+    <button class="deleteAssignBtn btn-floating hoverable red" title="Delete"><i class="material-icons left">delete</i>DELETE</button>
+  </div>
+
   {{#if applied}}
 
   <h5 class="blue-text center">Your Application</h5>
 
-  <table class="centered">
+  <table class="centered card">
     <thead class="grey lighten-3">
       <tr>
         <th>Quoted Cost</th>
@@ -149,10 +154,10 @@
             <li><p><b>Last updated: </b>{{format_dates yourApplication.updatedAt}}</p></li>
           </ul> --}}
 
-<div class="editDeleteBtn center">
-  <button class="editAssignBtn btn green">EDIT</button>
-  <button class="deleteAssignBtn btn red">DELETE</button>
-</div>
+{{!-- <div class="editDeleteBtn right">
+  <button class="editAssignBtn btn-large btn-floating green"><i class="material-icons">edit</i>EDIT</button>
+  <button class="deleteAssignBtn btn-large btn-floating red"><i class="material-icons">delete</i>DELETE</button>
+</div> --}}
           
 <!---EDIT FORM FOR SERVICE PROVIDER IF THEY CREATED IT--->
 <div class="container" id="editAssignForm">
