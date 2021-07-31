@@ -54,42 +54,10 @@ ul{
     padding: 2vw;
 }
 
-/* .form-container {
-    background-image: url('../img/logo.jpeg');
-    margin: 100px;
-    margin-left: 375px;
-    text-align: center;
-    border: 3px solid #024e76;
-    padding: 25px;
-    width: 40%;
-   
-} */
-
-/* .form-container input {
-  text-align: center;
-} */
-
 .loginAlert {
   color: red;
   display: none;
 }
-
-/* login-form {
- 
-  background-color: #024e76;
-  padding: 20px;
-  color: #024e76;
-  width: 40%;
-  margin: 3.5%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  border-radius: 15px;
-} */
-
-/* .pageHeader{
-  display: flex;
-  justify-content: space-between;
-} */
-
 
 .serviceYesNo {
   display: flex;
@@ -107,69 +75,9 @@ ul{
   display: none;
 }
 
-/* .login-form label {
-    color: black;
-    font-size: 50;
-    font-weight: bold;
-} */
-
-/* .signup-form label {
-    color: black;
-    font-size: 50;
-    font-weight: bold;
-}
-
-.signup-form p {
-  color: black;
-  font-weight: 600;
-  margin: 5px;
-} */
-
 .createJobBtn{
   padding-bottom: 0.5vw;
 }
-
-/* button {
-  background-color: #365eb3;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-} */
-
-/*--USER NAME DISPLAY--*/
-/* .welcome {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-.welcome h2 {  
-  margin: 15px 0;
-  font-size: 24px;
-} */
-
-/* .spColumns h3{
-  font-size: 26px;
-  margin: 10px;
-}
-
-.spColumns h4 {
-  font-size: 24px;
-  text-align: center;
-}
-
-.spColumns p{
-  margin: 5px 0;
-}
-
-.spColumns a {
-  font-size: 20px;
-} */
 
 /*--JOB DATA SINGLE PAGE DISPLAY--*/
 #applyJobForm {
@@ -194,7 +102,19 @@ ul{
   display: none;
 }
 
-/* .formDisplayBox {
-  text-align: center;
-} */
+/*--BACK BUTTON--*/
+.backButton {
+  display: flex;
+  line-height: .1em;
+}
 
+.backClick {
+  display: flex;
+  cursor: pointer;
+}
+
+.allAssignmentList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

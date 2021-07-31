@@ -10,7 +10,7 @@
         <div class="card-panel grey lighten-4">
           <a class="light-blue-text lighten-3" href="/orders/job/{{assignment.job.id}}">{{assignment.job.job_title}}</a>
           <p class="black-text">Applied on {{format_dates assignment.createdAt}}</p>
-          <p class="black-text">Status - {{assignment.job.status.status_text}}</p>
+          <p class="black-text">Status - {{getAssignStatus assignment}}</p>
           <p class="black-text">Last updated - {{format_dates assignment.job.updated_at}}</p>
         </div>
       {{/each}}

@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="formDisplayBox">
+      <div class="backButton blue-text col s12">
+        <div class="backClick">
+          <i class="small material-icons">arrow_back</i>
+          <p class="left">BACK</p>
+        </div>
+      </div>
       <!---JOB DATA VIEW FOR ALL--->  
       <div>
         <h4 class="blue lighten-3 white-text center col s12">{{jobData.job_title}}</h4>
@@ -81,26 +87,44 @@
           <ul>
             <li><p><b>Quoted Cost: </b>${{yourApplication.cost}}</p></li>
             <li><p><b>Order number: </b><span class="AssignOrderNumber">{{yourApplication.order_number}}</span></p></li>
-            <li class="col s12 center"><h6 class="blue-text">Application status</h6></li>
-            <li>
-              {{#if yourApplication.start_date}}
-              <p><b>Start date: </b>{{yourApplication.start_date}}</p>
+            <li class="col s12 center"><h6 class="blue-text">Application status - 
+              {{#if approval}}
+                {{#if yourApplication.approved_status}}
+                  Application accepted!
+                {{else}}
+                  Application rejected!  
+                {{/if}}
+              {{else}}
+                Job applied!
               {{/if}}
-            </li>
-            <li>
-            {{#if yourApplication.completed_date}}
-            <p><b>Completed date: </b>{{yourApplication.completed_date}}</p>
-            {{/if}}
-            </li>
+            </h6></li>
             <li><p><b>Applied on: </b>{{format_dates yourApplication.createdAt}}</p></li>
             <li><p><b>Last updated: </b>{{format_dates yourApplication.updatedAt}}</p></li>
+            {{#if yourApplication.start_date}}
+            <li class="col s12 center"><h6 class="blue-text">Job Status</h6></li>
+            <li>
+              <p><b>Started on: </b>{{yourApplication.start_date}}</p>
+            </li>
+            <li>
+              <p><b>Completed on: </b>{{yourApplication.complete_date}}</p>
+            </li>
+            {{/if}}
           </ul>
         
         </div>
 
           <div class="editDeleteBtn center">
-            <button class="editAssignBtn btn green">EDIT</button>
-            <button class="deleteAssignBtn btn red" >DELETE</button>
+            {{#if approval}}
+              {{#if yourApplication.approved_status}}
+                <button class="editAssignBtn btn green">EDIT</button>
+                <button class="deleteAssignBtn btn red" >DELETE</button>
+                <script src="/assets/javascript/assignmentEditDelete.js"></script>
+              {{/if}}
+            {{else}}
+              <button class="editAssignBtn btn green">EDIT</button>
+              <button class="deleteAssignBtn btn red" >DELETE</button>
+              <script src="/assets/javascript/assignmentEditDelete.js"></script>
+            {{/if}}
           </div>
           
           <!---EDIT FORM FOR SERVICE PROVIDER IF THEY CREATED IT--->
@@ -113,21 +137,32 @@
                 <label for='assignEditCost'>COST: </label>
                 <input type='text' id='assignEditCost' />
               </div>
+              {{#if yourApplication.approved_status}}
               <div>
-                <label for='assignEditStartDate'>START DATE: </label>
-                <input type='text' id='assignEditStartDate' />
+                <label for='assignEditStartDate'>STARTED ON: </label>
+                <input type='date' id='assignEditStartDate' />
               </div>
               <div>
-                <label for='assignEditCompleteDate'>COMPLETE DATE: </label>
-                <input type='text' id='assignEditCompleteDate' />
+                <label for='assignEditCompleteDate'>COMPLETE ON: </label>
+                <input type='date' id='assignEditCompleteDate' />
               </div>
+              {{else}}
+              <div>
+                <label for='assignEditStartDate'>STARTED ON: </label>
+                <input type='date' id='assignEditStartDate' disabled/>
+              </div>
+              <div>
+                <label for='assignEditCompleteDate'>COMPLETE ON: </label>
+                <input type='date' id='assignEditCompleteDate' disabled/>
+              </div>
+              {{/if}}
               <div>
                 <button class="editAssignSubmitBtn btn green" type="submit">Submit</button>
                 <button class="editAssignCancelBtn btn red-text transparent" >Cancel</button>
               </div>
             </form>         
           </div>
-          <script src="/assets/javascript/editDeleteAssignment.js"></script>
+          <script src="/assets/javascript/editAssignmentSubmit.js"></script>
         <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF NOT APPLIED FOR THE JOB--->
         {{else}}
 
@@ -141,10 +176,10 @@
                 <label for='assignmentCost'>COST: </label>
                 <input type='text' id='assignmentCost' />
               </div>
-              <div>
+              <!--<div>
                 <label for='assignmentOrderNo'>ORDER#: </label>
                 <input type='text' id='assignmentOrderNo' />
-              </div>
+              </div>-->
               <div>
                 <button class="applyJobSubmitBtn btn green" type="submit">Submit</button>
                 <button class="applyJobCancelBtn btn red-text transparent" >Cancel</button>
@@ -160,29 +195,33 @@
         {{/if}}
         <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE APPROVED ANY ASSIGNMENT--->
         {{#if approval}}
-          <ul>
+          <ul class="allApplicationList">
           {{#each jobData.assignments as |assignment|}}
-            <li><p><b>Service provider: </b>{{assignment.user.username}}</p></li>
-            <li><p><b>Service type: </b>{{assignment.user.service.service_type}}</p></li>
-            <li><p><b>Order number: </b><span class="orderNumber">{{assignment.order_number}}</span></p></li>
-            <li><p><b>Cost: </b>${{assignment.cost}}</p></li>
-            {{#if assignment.approved_status}}
-            <li class="col s12 center"><button class="grey btn">ASSIGNED</button></li>
-            {{else}}
-            <li class="col s12 center"><button class="red btn">REJECTED</button></li>
-            {{/if}}
+            <div class="allAssignmentList">
+              <li><p><b>Service provider: </b>{{assignment.user.username}}</p></li>
+              <li><p><b>Service type: </b>{{assignment.user.service.service_type}}</p></li>
+              <li><p><b>Order number: </b><span class="orderNumber">{{assignment.order_number}}</span></p></li>
+              <li><p><b>Cost: </b>${{assignment.cost}}</p></li>
+              {{#if assignment.approved_status}}
+              <li class="col s12 center"><button class="grey btn">ASSIGNED</button></li>
+              {{else}}
+              <li class="col s12 center"><button class="red btn">REJECTED</button></li>
+              {{/if}}
+            </div>
           {{/each}}
           </ul>
         <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE NOT APPROVED ANY ASSIGNMENT--->
         {{else}}
       
-        <ul>
+        <ul class="allApplicationList">
           {{#each jobData.assignments as |assignment|}}
-          <li><p><b>Service provider: </b>{{assignment.user.username}}</p></li>
-          <li><p><b>Service type: </b>{{assignment.user.service.service_type}}</p></li>
-          <li><p><b>Order number: </b><span class="orderNumber">{{assignment.order_number}}</span></p></li>
-          <li><p><b>Cost: </b>${{assignment.cost}}</p></li>
-          <li class="col s12 center"><button class="approveAssignmentBtn btn green">APPROVE</button></li>
+            <div class="allAssignmentList">
+              <li><p><b>Service provider: </b>{{assignment.user.username}}</p></li>
+              <li><p><b>Service type: </b>{{assignment.user.service.service_type}}</p></li>
+              <li><p><b>Order number: </b><span class="orderNumber">{{assignment.order_number}}</span></p></li>
+              <li><p><b>Cost: </b>${{assignment.cost}}</p></li>
+              <li class="col s12 center"><button class="approveAssignmentBtn btn green">APPROVE</button></li>
+            </div> 
           {{/each}}
         </ul>
           {{#if jobData.assignments}}
@@ -192,7 +231,8 @@
         
         
       {{/if}}
-       <p class="alertMessage"></p>
+      <p class="alertMessage"></p>
+      <script src="/assets/javascript/backClick.js"></script>
     </div>
   </div>
 </div>

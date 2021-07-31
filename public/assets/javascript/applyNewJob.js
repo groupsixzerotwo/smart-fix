@@ -5,24 +5,24 @@ const applyJobBtnHandler = (event) => {
 
 const applyJobCancelBtnHandler = (event) => {
   event.preventDefault();
-  document.querySelector('#applyJobForm').style.display = "none";
-  document.querySelector('.applyJobBtn').style.display = "block";
+  document.location.reload();
+  //document.querySelector('#applyJobForm').style.display = "none";
+  //document.querySelector('.applyJobBtn').style.display = "block";
 }
 
 const applyJobFormHandler = async (event) => {
   event.preventDefault();
   const cost = document.querySelector('#assignmentCost').value.trim();
-  const order_number = document.querySelector('#assignmentOrderNo').value.trim();
+  //const order_number = document.querySelector('#assignmentOrderNo').value.trim();
   let job_id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
   job_id = job_id.split('?')[0];
-  if (cost && order_number && job_id) {
+  if (cost && job_id) {
     const response = await fetch('/api/assignment', {
       method: 'POST',
       body: JSON.stringify({
         cost,
-        order_number,
         job_id
       }),
       headers: {

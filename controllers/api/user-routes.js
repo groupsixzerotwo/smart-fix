@@ -83,8 +83,17 @@ router.post('/', (req,res) => {
     });
   })
   .catch(err => {
-    console.log(err);
-    res.status(500).json(err)
+    console.log(err.errors[0].message)
+    if (err.errors[0].message === "user.email must be unique") {
+      res.status(404).json({message: "Email is already registered!"})
+      return;
+    }
+    else if (err.errors[0].message === "Validation len on password failed") {
+      res.status(404).json({message: "Password must be atleast 8 digits!"})
+    }
+    else {
+      res.status(404).json({message: "Invalid input, please try again!"})
+    }
   });
 });
 

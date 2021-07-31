@@ -52,17 +52,46 @@ router.get('/', (req, res) => {
         },
         {
           model: Status
+        },
+        {
+          model: Assignment,
+          include: {
+            model: User,
+            attributes: ['id', 'username']
+          }
         }
       ]
     });
 
     Promise.all([dbAssignmentData, dbJobData])
       .then(([assignData, jData]) => {
-      const assignmentData = assignData.map(assignment => assignment.get({plain: true}));
-      const jobData = jData.map(assignment => assignment.get({plain: true}));
-      console.log({assignmentData, jobData, theuser, loggedIn: req.session.loggedIn})
-      res.render('jobOrdersSP', {assignmentData, jobData, theuser, loggedIn: req.session.loggedIn})
-    });    
+        //let assignmentData = [];
+        let jobData = [];
+        const assignmentData = assignData.map(assignment => assignment.get({plain: true}));
+          /*let eachAssign = assignment.get({plain: true});
+          if (assignment.approved_status && assignment.job.status.id > 2) {
+            eachAssign.application_accepted = true;
+          } else {
+            eachAssign.application_accepted = false;
+          }
+          assignmentData.push(eachAssign);
+        });*/
+
+        jData.forEach(job => {         
+          let eachjob = job.get({plain: true});
+          let addJob = true;
+          eachjob.assignments.forEach(assignment => {
+            if (assignment.user.id === req.session.user_id) {
+              addJob = false;
+            }
+          });
+          if (addJob) {
+            jobData.push(eachjob);
+          }
+        });
+        //console.log({assignmentData, jobData, theuser, loggedIn: req.session.loggedIn})
+        res.render('jobOrdersSP', {assignmentData, jobData, theuser, loggedIn: req.session.loggedIn})
+      });    
   } 
   //----GET JOB DATA FOR CUSTOMER----//
   else {
