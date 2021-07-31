@@ -13,7 +13,7 @@ const applyJobCancelBtnHandler = (event) => {
 const applyJobFormHandler = async (event) => {
   event.preventDefault();
   const cost = document.querySelector('#assignmentCost').value.trim();
-  const order_number = document.querySelector('#assignmentOrderNo').value.trim();
+  //const order_number = document.querySelector('#assignmentOrderNo').value.trim();
   let job_id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
@@ -23,7 +23,7 @@ const applyJobFormHandler = async (event) => {
       method: 'POST',
       body: JSON.stringify({
         cost,
-        order_number,
+        //order_number,
         job_id
       }),
       headers: {

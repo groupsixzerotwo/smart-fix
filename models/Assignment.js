@@ -1,5 +1,6 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
+const invoiceGen = require('../utils/invoiceGen');
 
 class Assignment extends Model {}
 
@@ -22,17 +23,23 @@ Assignment.init(
     order_number: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false
+      allowNull: true
     },
     //Assignment start date
     start_date : {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      validate: {
+        isDate: true
+      }
     },
     //Assignment complete date
     complete_date: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      validate: {
+        isDate: true
+      }
     },
     approved_status: {
       type: DataTypes.BOOLEAN,
@@ -58,6 +65,12 @@ Assignment.init(
     }
   },
   {
+    hooks: {
+      async afterCreate(newAssignData) {
+        newAssignData.order_number = await invoiceGen(newAssignData.id);
+        return newAssignData;
+      }
+    },
     sequelize,
     freezeTableName: true,
     underscored: true,
