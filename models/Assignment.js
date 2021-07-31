@@ -23,7 +23,11 @@ Assignment.init(
     order_number: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: true
+      //defaultValue: Sequelize.col('id')
+      /*set() {
+        console.log(this)
+        return invoiceGen(this.id);
+      }*/
     },
     //Assignment start date
     start_date : {
@@ -64,11 +68,13 @@ Assignment.init(
       }
     }
   },
-  {
+  { 
     hooks: {
-      async afterCreate(newAssignData) {
-        newAssignData.order_number = await invoiceGen(newAssignData.id);
-        return newAssignData;
+      async afterCreate(assignData) {
+        let orderNum = invoiceGen(assignData.get('id'));
+        return assignData.set('order_number', orderNum).save().then(result => {
+          return result;
+        })
       }
     },
     sequelize,

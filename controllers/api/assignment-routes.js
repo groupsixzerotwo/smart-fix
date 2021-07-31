@@ -111,7 +111,7 @@ router.post('/delete', (req, res) => {
   })
   .then(dbAssignmentData => {
     if (!dbAssignmentData) {
-      res.status(404).json({ message: 'No job found with this oder number' });
+      res.status(404).json({ message: 'No job found with this order number' });
       return;
     }
     res.json(dbAssignmentData);

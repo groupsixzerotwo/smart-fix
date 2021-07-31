@@ -70,8 +70,11 @@ const editAssignBtnHandler = async (event) => {
       console.log(data)
       document.querySelector('#assignEditCost').value = data.cost;
       //document.querySelector('#assignEditOrderNumber').value = data.order_number;
-      document.querySelector('#assignEditStartDate').value = data.start_date;
-      document.querySelector('#assignEditCompleteDate').value = data.complete_date;
+      if (data.start_date || data.complete_date) {
+        document.querySelector('#assignEditStartDate').value = data.start_date;
+        document.querySelector('#assignEditCompleteDate').value = data.complete_date;
+      }
+      
     })
 };
 

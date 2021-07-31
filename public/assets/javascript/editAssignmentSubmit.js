@@ -22,10 +22,28 @@ const getAssignmentId = async (order_number) => {
 
 const editAssignSubmitBtnHandler = async (event) => {
   event.preventDefault();
-  cost = document.querySelector('#assignEditCost').value;
-  order_number = document.querySelector('.AssignOrderNumber').innerHTML;
-  start_date = document.querySelector('#assignEditStartDate').value;
-  complete_date = document.querySelector('#assignEditCompleteDate').value;
+  const cost = document.querySelector('#assignEditCost').value;
+  const order_number = document.querySelector('.AssignOrderNumber').innerHTML;
+  const start_date = document.querySelector('#assignEditStartDate').value;
+  const complete_date = document.querySelector('#assignEditCompleteDate').value;
+  let assignObject = {}
+
+  if (!start_date && !complete_date) {
+    assignObject = {cost, order_number};
+  } else if (start_date && !complete_date) {
+    assignObject = {cost, order_number, start_date};
+  } else if (start_date && complete_date) {
+    assignObject = {cost, order_number, start_date, complete_date};
+  } else {
+    document.querySelector('.loginAlert').textContent = "Please enter both email and password!";
+    document.querySelector('.loginAlert').style.display = "block";
+    setTimeout(function() { 
+      document.querySelector('.loginAlert').style.display = "none"; 
+    }, 3000);
+    return;
+  }
+
+
   let job_id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
@@ -35,12 +53,7 @@ const editAssignSubmitBtnHandler = async (event) => {
     .then(async (data) => {
       const response = await fetch(`/api/assignment/${data.id}`, {
         method: 'PUT',
-        body: JSON.stringify({
-          cost,
-          order_number,
-          start_date,
-          complete_date
-        }),
+        body: JSON.stringify(assignObject),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -80,7 +93,6 @@ const editAssignSubmitBtnHandler = async (event) => {
     });
   
 };
-
 
 document.querySelector('.editAssignCancelBtn').addEventListener('click', editAssignCancelBtnHandler);
 document.querySelector('.editAssignSubmitBtn').addEventListener('click', editAssignSubmitBtnHandler);

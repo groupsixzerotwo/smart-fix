@@ -18,12 +18,11 @@ const applyJobFormHandler = async (event) => {
     window.location.toString().split('/').length - 1
   ];
   job_id = job_id.split('?')[0];
-  if (cost && order_number && job_id) {
+  if (cost && job_id) {
     const response = await fetch('/api/assignment', {
       method: 'POST',
       body: JSON.stringify({
         cost,
-        //order_number,
         job_id
       }),
       headers: {

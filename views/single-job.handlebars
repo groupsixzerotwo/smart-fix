@@ -137,14 +137,25 @@
                 <label for='assignEditCost'>COST: </label>
                 <input type='text' id='assignEditCost' />
               </div>
+              {{#if yourApplication.approved_status}}
               <div>
-                <label for='assignEditStartDate'>START DATE: </label>
-                <input type='text' id='assignEditStartDate' />
+                <label for='assignEditStartDate'>STARTED ON: </label>
+                <input type='date' id='assignEditStartDate' />
               </div>
               <div>
-                <label for='assignEditCompleteDate'>COMPLETE DATE: </label>
-                <input type='text' id='assignEditCompleteDate' />
+                <label for='assignEditCompleteDate'>COMPLETE ON: </label>
+                <input type='date' id='assignEditCompleteDate' />
               </div>
+              {{else}}
+              <div>
+                <label for='assignEditStartDate'>STARTED ON: </label>
+                <input type='date' id='assignEditStartDate' disabled/>
+              </div>
+              <div>
+                <label for='assignEditCompleteDate'>COMPLETE ON: </label>
+                <input type='date' id='assignEditCompleteDate' disabled/>
+              </div>
+              {{/if}}
               <div>
                 <button class="editAssignSubmitBtn btn green" type="submit">Submit</button>
                 <button class="editAssignCancelBtn btn red-text transparent" >Cancel</button>
