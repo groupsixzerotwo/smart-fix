@@ -111,12 +111,14 @@
           <div class="editDeleteBtn center">
             {{#if approval}}
               {{#if yourApplication.approved_status}}
-                <!--<button class="editAssignBtn btn green">EDIT</button>-->
+                <button class="editAssignBtn btn green">EDIT</button>
                 <button class="deleteAssignBtn btn red" >DELETE</button>
+                <script src="/assets/javascript/assignmentEditDelete.js"></script>
               {{/if}}
             {{else}}
               <button class="editAssignBtn btn green">EDIT</button>
               <button class="deleteAssignBtn btn red" >DELETE</button>
+              <script src="/assets/javascript/assignmentEditDelete.js"></script>
             {{/if}}
           </div>
           
@@ -144,7 +146,7 @@
               </div>
             </form>         
           </div>
-          <script src="/assets/javascript/editDeleteAssignment.js"></script>
+          <script src="/assets/javascript/editAssignmentSubmit.js"></script>
         <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF NOT APPLIED FOR THE JOB--->
         {{else}}
 
