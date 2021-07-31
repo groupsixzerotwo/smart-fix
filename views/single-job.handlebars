@@ -1,12 +1,12 @@
-<div class="displayBox">
-  <div class="row container">
+<div class="container">
+  <div class="row">
     <div class="formDisplayBox">
       <!---JOB DATA VIEW FOR ALL--->  
       <div>
         <h4 class="blue lighten-3 white-text center col s12">{{jobData.job_title}}</h4>
       </div>
 
-      <div class="row container">
+      <div class="row">
         <h5 class="blue-text center">Job Details</h5>
 
         <ul>
@@ -22,7 +22,7 @@
         </ul>
       </div>
 
-      <div class="row container">
+      <div class="row">
         <h5 class="blue-text center">Customer Details</h5>
 
         <ul>
@@ -156,34 +156,35 @@
       <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS---> 
       {{else}}
         {{#if jobData.assignments}}
-          <h4 class="blue-text lighten-4">Application for the order</h4>
+          <h4 class="blue-text center">Application for the order</h4>
         {{/if}}
         <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE APPROVED ANY ASSIGNMENT--->
         {{#if approval}}
-
+          <ul>
           {{#each jobData.assignments as |assignment|}}
-            <p>Service provider: {{assignment.user.username}}</p>
-            <p>Service type: {{assignment.user.service.service_type}}</p>
-            <p>Order number: <span class="orderNumber">{{assignment.order_number}}</span></p>
-            <p>Cost: ${{assignment.cost}}</p>   
+            <li><p><b>Service provider: </b>{{assignment.user.username}}</p></li>
+            <li><p><b>Service type: </b>{{assignment.user.service.service_type}}</p></li>
+            <li><p><b>Order number: </b><span class="orderNumber">{{assignment.order_number}}</span></p></li>
+            <li><p><b>Cost: </b>${{assignment.cost}}</p></li>
             {{#if assignment.approved_status}}
-              <button class="grey btn">ASSIGNED</button>
+            <li class="col s12 center"><button class="grey btn">ASSIGNED</button></li>
             {{else}}
-              <button class="red btn">REJECTED</button>
+            <li class="col s12 center"><button class="red btn">REJECTED</button></li>
             {{/if}}
           {{/each}}
-
+          </ul>
         <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE NOT APPROVED ANY ASSIGNMENT--->
         {{else}}
-       
+      
+        <ul>
           {{#each jobData.assignments as |assignment|}}
-          <p>Service provider: {{assignment.user.username}}</p>
-          <p>Service type: {{assignment.user.service.service_type}}</p>
-          <p>Order number: <span class="orderNumber">{{assignment.order_number}}</span></p>
-          <p>Cost: ${{assignment.cost}}</p> 
-          <button class="approveAssignmentBtn btn green">APPROVE</button>
+          <li><p><b>Service provider: </b>{{assignment.user.username}}</p></li>
+          <li><p><b>Service type: </b>{{assignment.user.service.service_type}}</p></li>
+          <li><p><b>Order number: </b><span class="orderNumber">{{assignment.order_number}}</span></p></li>
+          <li><p><b>Cost: </b>${{assignment.cost}}</p></li>
+          <li class="col s12 center"><button class="approveAssignmentBtn btn green">APPROVE</button></li>
           {{/each}}
-
+        </ul>
           {{#if jobData.assignments}}
           <script src="/assets/javascript/approveAssignment.js"></script>
           {{/if}}
@@ -194,4 +195,5 @@
        <p class="alertMessage"></p>
     </div>
   </div>
+</div>
 </div>
