@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="formDisplayBox">
+      <div class="backButton blue-text col s12">
+        <div class="backClick">
+          <i class="small material-icons">arrow_back</i>
+          <p class="left">BACK</p>
+        </div>
+      </div>
       <!---JOB DATA VIEW FOR ALL--->  
       <div>
         <h4 class="blue lighten-3 white-text center col s12">{{jobData.job_title}}</h4>
@@ -211,7 +217,8 @@
         
         
       {{/if}}
-       <p class="alertMessage"></p>
+      <p class="alertMessage"></p>
+      <script src="/assets/javascript/backClick.js"></script>
     </div>
   </div>
 </div>

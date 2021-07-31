@@ -5,8 +5,9 @@ const applyJobBtnHandler = (event) => {
 
 const applyJobCancelBtnHandler = (event) => {
   event.preventDefault();
-  document.querySelector('#applyJobForm').style.display = "none";
-  document.querySelector('.applyJobBtn').style.display = "block";
+  document.location.reload();
+  //document.querySelector('#applyJobForm').style.display = "none";
+  //document.querySelector('.applyJobBtn').style.display = "block";
 }
 
 const applyJobFormHandler = async (event) => {
