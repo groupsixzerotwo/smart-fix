@@ -9,7 +9,6 @@ const approveAssignmentHandler = async (event) => {
   const assignData = await fetch(`/api/assignment/orderNum`, {
     method: 'POST',
     body: JSON.stringify({
-      job_id,
       order_number
     }),
     headers: {
@@ -42,7 +41,7 @@ const approveAssignmentHandler = async (event) => {
 
         Promise.all([assignmentUpdate, jobUpdate])
           .then(([assignData, jData]) => {
-            document.location.replace('/orders');
+            document.location.reload();
           })
       })
   }
