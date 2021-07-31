@@ -1,37 +1,51 @@
 <div class="container">
-  <div class="row">
-    <div class="formDisplayBox">
-      <!---JOB DATA VIEW FOR ALL--->  
-      <div>
-        <h4 class="blue lighten-3 white-text center col s12">{{jobData.job_title}}</h4>
-      </div>
+  <!---JOB DATA VIEW FOR ALL--->  
+  <h4 class="blue lighten-3 white-text center">{{jobData.job_title}}</h4>
+  <h5 class="blue-text center">Job Details</h5>
+  <table class="centered card">
+    <thead class="blue lighten-2 white-text">
+      <tr>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Created Date</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
 
-      <div class="row">
-        <h5 class="blue-text center">Job Details</h5>
-
-        <ul>
-          <li class="col s12">
-            <p><b>Description: </b>
+    <tbody>
+      <tr>
+        <td>
           {{#each jobData.job_text as |text|}}
           {{text}}
-          {{/each}}</p>
-          </li>
-          <li class="col s12"><p><b>Status: </b>{{jobData.status.status_text}}</p></li>
-          <li class="col s12"><p><b>Created on: </b>{{format_dates jobData.createdAt}}</p></li>
-          <li class="col s12"><p><b>Last updated: </b>{{format_dates jobData.updatedAt}}</p></li>
-        </ul>
-      </div>
+          {{/each}}
+        </td>
+        <td>{{jobData.status.status_text}}</td>
+        <td>{{format_dates jobData.createdAt}}</td>
+        <td>{{format_dates jobData.updatedAt}}</td>
+      </tr>
+    </tbody>
+  </table>
 
-      <div class="row">
-        <h5 class="blue-text center">Customer Details</h5>
+  <h5 class="blue-text center">Customer Details</h5>
+  <table class="centered card">
+    <thead class="blue lighten-2 white-text">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone No.</th>
+        <th>Email</th>
+      </tr>
+    </thead>
 
-        <ul>
-          <li class="col s12"><p><b>Name: </b>{{jobData.user.username}}</p></li>
-          <li class="col s12"><p><b>Address: </b>{{jobData.job_address}}</p></li>
-          <li class="col s12"><p><b>Contact: </b>{{jobData.job_contact}}</p></li>
-          <li class="col s12"><p><b>Email: </b>{{jobData.user.email}}</p></li>
-        </ul>
-      </div>
+    <tbody>
+      <tr>
+        <td>{{jobData.user.username}}</td>
+        <td>{{jobData.job_address}}</td>
+        <td>{{jobData.job_contact}}</td>
+        <td>{{jobData.user.email}}</td>
+      </tr>
+    </tbody>
+  </table>
 
       <!---JOB DATA EDIT DELETE OPTION FOR THE CUSTOMER WHO CREATED IT---> 
       {{#unless isService}}

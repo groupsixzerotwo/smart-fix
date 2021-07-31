@@ -1,51 +1,48 @@
-<div class="container welcome row">
+<div class="container row">
   <h2 class="col s12 center">Welcome {{theuser}}</h2>
   <p class="col s12 center">(customer)</p>
 </div>
-<div class="displayBox">  
-  <div class="row container">
-    <!--<div class="col s4">
-      <h3>Job Assignments</h3>
-      {{#each assignmentData as |assignment|}}
-        <div class="card-panel grey lighten-4">
-          <a class="light-blue-text lighten-3" href="/orders/assignment/{{assignment.id}}">{{assignment.job.job_title}}</a>
-          <p class="black-text">Applied on {{format_dates assignment.createdAt}}</p>
-          <p class="black-text">Status - {{assignment.job.status.status_text}}</p>
-          <p class="black-text">Last updated - {{format_dates assignment.job.updated_at}}</p>
-        </div>
-      {{/each}}
-    </div>-->
-    <h3>Your Jobs</h3>
+
+<div class="container">
+  <h3>Your Jobs</h3>
+  <button class="createJobBtn btn green waves-effect waves-light"><i class="material-icons left">add</i>New Job</button>
+  </ul>
+  <table class="highlight card centered">
+    <thead>
+      <tr class="blue lighten-2 white-text">
+        <th>Title</th>
+        <th>Created Date</th>
+        <th>Job Status</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
     {{#each jobData as |job|}}
-      <div class="col s12 m6">
-        <div class="card-panel grey lighten-4">
-          <a class="light-blue-text lighten-3" href="/orders/job/{{job.id}}">{{job.job_title}}</a>
-          <p class="black-text">Created by {{job.user.username}} on {{format_dates job.created_at}}</p>
-          <p class="black-text">Status - {{job.status.status_text}}</p>
-          <p class="black-text">Last updated - {{format_dates job.updated_at}}</p>
-        </div>
-      </div>
+    <tbody>
+      <tr>
+        <td class="waves-light"><a href="/orders/job/{{job.id}}">{{job.job_title}}</a></td>
+        <td>{{format_dates job.created_at}}</td>
+        <td>{{job.status.status_text}}</td>
+        <td>{{format_dates job.updated_at}}</td>
+      </tr>
+    </tbody>
     {{/each}}
-  </div>
+  </table>
 </div>
-<div class="displayBox">  
-  <div class="row container spColumns">
-    <div class="col s12">
-      <button class="createJobBtn btn green waves-effect waves-light center"><i class="material-icons left">add</i>New Job</button>
-      <div class="container" id="addNewJobForm">
-        <form class="addNewJobForm">
-          <div>
-            <h4 class="blue-text">CREATE NEW JOB</h4>
-          </div>
-          <div>
-            <label for='jobTitle'>TITLE: </label>
-            <input type='text' id='jobTitle' />
-          </div>
-          <div>
-            <label for='jobText'>DESCRIPTION: </label>
-            <textarea id="jobText" class="materialize-textarea"></textarea>
-          </div>
-          <div>
+
+<div class="row container">
+  <div class="col s12">
+    <div class="container" id="addNewJobForm">
+      <form class="addNewJobForm">
+        <h4 class="blue-text center">CREATE NEW JOB</h4>
+        <div>
+          <label for='jobTitle'>TITLE: </label>
+          <input type='text' id='jobTitle' />
+        </div>
+        <div>
+          <label for='jobText'>DESCRIPTION: </label>
+          <textarea id="jobText" class="materialize-textarea"></textarea>
+        </div>    
+        <div>
             <label for='jobAddress'>ADDRESS: </label>
             <textarea class="materialize-textarea" id='jobAddress'></textarea>
           </div>
@@ -57,9 +54,9 @@
             <button class="createJobSubmitBtn btn green" type="submit">Submit</button>
             <button class="createJobCancelBtn btn red-text transparent " >Cancel</button>
           </div>
+          </ul>
         </form>  
         <p class="alertMessage"></p>       
-      </div>
     </div>
   </div>
 </div>
