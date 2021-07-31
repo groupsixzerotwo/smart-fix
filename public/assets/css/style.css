@@ -1,3 +1,14 @@
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+     
 header{
     margin: 0 5vw !important;
 }
@@ -102,7 +113,7 @@ ul{
     font-weight: bold;
 } */
 
-.signup-form label {
+/* .signup-form label {
     color: black;
     font-size: 50;
     font-weight: bold;
@@ -112,7 +123,7 @@ ul{
   color: black;
   font-weight: 600;
   margin: 5px;
-}
+} */
 
 .createJobBtn{
   padding-bottom: 0.5vw;

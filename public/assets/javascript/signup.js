@@ -1,11 +1,11 @@
 async function signupFormHandler(event) {
   event.preventDefault();
 
-  const username = document.querySelector('#username-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
+  const username = document.querySelector('.username-signup').value.trim();
+  const email = document.querySelector('.email-signup').value.trim();
+  const password = document.querySelector('.password-signup').value.trim();
   const sp = document.querySelector("input[name=serviceYesNo]:checked").value;
-  let service_id = null;
+  let service_id = null ;
   if (sp === "Yes") {
     service_id = document.querySelector("input[name=service-list]:checked").value;
   };
