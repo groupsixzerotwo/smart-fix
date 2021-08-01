@@ -87,7 +87,13 @@ router.post('/', (req,res) => {
   .then(dbJobData => res.json(dbJobData))
   .catch(err => {
     console.log(err);
-    res.status(500).json(err)
+    if (err.errors[0].message === "Validation isNumeric on job_contact failed") {
+      res.status(404).json({message: "Contact must be a number. No special character or alphabets allowed!"})
+      return;
+    }
+    else {
+      res.status(404).json({message: "Invalid input, please try again!"})
+    }
   });
 });
 
@@ -107,7 +113,13 @@ router.put('/:id', (req, res) => {
   })
   .catch(err => {
     console.log(err);
-    res.status(500).json(err);
+    if (err.errors[0].message === "Validation isNumeric on job_contact failed") {
+      res.status(404).json({message: "Contact must be a number. No special character or alphabets allowed!"})
+      return;
+    }
+    else {
+      res.status(404).json({message: "Invalid input, please try again!"})
+    }
   });
 });
 

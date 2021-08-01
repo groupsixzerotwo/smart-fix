@@ -23,11 +23,6 @@ Assignment.init(
     order_number: {
       type: DataTypes.STRING,
       unique: true,
-      //defaultValue: Sequelize.col('id')
-      /*set() {
-        console.log(this)
-        return invoiceGen(this.id);
-      }*/
     },
     //Assignment start date
     start_date : {
@@ -69,6 +64,7 @@ Assignment.init(
     }
   },
   { 
+    //----AUTO GENERATES THE ORDER NUMBER WITH THE ID----//
     hooks: {
       async afterCreate(assignData) {
         let orderNum = invoiceGen(assignData.get('id'));

@@ -3,7 +3,7 @@ const { User, Job, Service, Status, Rating, Assignment } = require('../../models
 
 //-----GET - FIND ALL ASSIGNMENT-----//
 router.get('/', (req, res) => {
-  //Access Service model and run .findAll() method
+  //Access assignment model and run .findAll() method
   Assignment.findAll({
     include: [
       {
@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
 
 //-----GET - FIND ONE ASSIGNMENT-----//
 router.get('/:id', (req, res) => {
-  //Access Service model and run .findAll() method
+  //Access assignment model and run .findAll() method
   Assignment.findOne({
     where: {
       id: req.params.id
@@ -71,7 +71,7 @@ router.get('/:id', (req, res) => {
   })
   .then(dbAssignmentData => {
     if(!dbAssignmentData) {
-      res.status(404).json({message: 'No service found with this id'});
+      res.status(404).json({message: 'No assignment found with this id'});
       return;
     }
     res.json(dbAssignmentData);
@@ -91,7 +91,7 @@ router.post('/orderNum', (req, res) => {
   })
   .then(dbAssignmentData => {
     if(!dbAssignmentData) {
-      res.status(404).json({message: 'No service found with this order number'});
+      res.status(404).json({message: 'No assignment found with this order number'});
       return;
     }
     console.log(dbAssignmentData)
@@ -111,7 +111,7 @@ router.post('/delete', (req, res) => {
   })
   .then(dbAssignmentData => {
     if (!dbAssignmentData) {
-      res.status(404).json({ message: 'No job found with this order number' });
+      res.status(404).json({ message: 'No assignment found with this order number' });
       return;
     }
     res.json(dbAssignmentData);
@@ -149,7 +149,7 @@ router.put('/:id', (req, res) => {
   })
   .then(dbAssignmentData => {
     if (!dbAssignmentData) {
-      res.status(404).json({message: 'No job found with that id'})
+      res.status(404).json({message: 'No assignment found with that id'})
       return;
     }
     res.json(dbAssignmentData);
@@ -169,7 +169,7 @@ router.delete('/:id', (req, res) => {
   })
   .then(dbAssignmentData => {
     if (!dbAssignmentData) {
-      res.status(404).json({ message: 'No job found with this id' });
+      res.status(404).json({ message: 'No assignment found with this id' });
       return;
     }
     res.json(dbAssignmentData);

@@ -1,3 +1,6 @@
+//----LOGIC FOR JIB SUBMIT OR CANCEL----//
+
+//----JOB EDIT CANCEL BUTTON----//
 const editJobCancelBtnHandler = (event) => {
   event.preventDefault()
   document.querySelector('.editDeleteBtn').style.display = "block";
@@ -6,11 +9,12 @@ const editJobCancelBtnHandler = (event) => {
 
 const editJobSubmitBtnHandler = async (event) => {
   event.preventDefault()
+  //Get job id
   let job_id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
   job_id = job_id.split('?')[0];
-
+  //Get all values
   job_title = document.querySelector('#jobEditTitle').value;
   job_text = document.querySelector('#jobEditDescription').value;
   job_address = document.querySelector('#jobEditAddress').value;
@@ -31,6 +35,16 @@ const editJobSubmitBtnHandler = async (event) => {
 
   if (response.ok) {
     document.location.reload();
+  } else {
+    response.text().then(text => {
+      //Get error message
+      console.log(text)
+      document.querySelector('.alertMessage').textContent = text.split('"')[3];
+      document.querySelector('.alertMessage').style.display = "block";
+      setTimeout(function() { 
+        document.querySelector('.alertMessage').style.display = "none"; 
+      }, 3000);
+    });
   }
 }
 

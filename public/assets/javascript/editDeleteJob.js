@@ -1,3 +1,4 @@
+//----JOB DELETE BUTTON LOGIC----//
 const deleteJobBtnHandler = async () => {
   let job_id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
@@ -14,6 +15,7 @@ const deleteJobBtnHandler = async () => {
   }
 };
 
+//----JOB EDIT BUTTON DISPLAY LOGIC----//
 const editJobBtnHandler = async (event) => {
   event.preventDefault()
   let job_id = window.location.toString().split('/')[

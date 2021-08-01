@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
   //const service = req.session.service_id;
   //----GET ASSIGNMENT AND JOB DATA FOR SERVICE PROVIDER----//
   if (req.session.service_id) {
+    //get all assignment data for the user
     const dbAssignmentData = Assignment.findAll({
       where: {
         user_id: req.session.user_id
@@ -40,6 +41,7 @@ router.get('/', (req, res) => {
       ]
     });
 
+    //get all jobs data
     const dbJobData = Job.findAll({
       include: [
         {
@@ -63,24 +65,18 @@ router.get('/', (req, res) => {
       ]
     });
 
+    //Execute both promises together
     Promise.all([dbAssignmentData, dbJobData])
       .then(([assignData, jData]) => {
-        //let assignmentData = [];
         let jobData = [];
-        const assignmentData = assignData.map(assignment => assignment.get({plain: true}));
-          /*let eachAssign = assignment.get({plain: true});
-          if (assignment.approved_status && assignment.job.status.id > 2) {
-            eachAssign.application_accepted = true;
-          } else {
-            eachAssign.application_accepted = false;
-          }
-          assignmentData.push(eachAssign);
-        });*/
 
+        const assignmentData = assignData.map(assignment => assignment.get({plain: true}));
+        //Seperate jobs applied with the ones not applied
         jData.forEach(job => {         
           let eachjob = job.get({plain: true});
           let addJob = true;
           eachjob.assignments.forEach(assignment => {
+            //if user id in the job's assignment matches the one in session
             if (assignment.user.id === req.session.user_id) {
               addJob = false;
             }
@@ -89,10 +85,11 @@ router.get('/', (req, res) => {
             jobData.push(eachjob);
           }
         });
-        //console.log({assignmentData, jobData, theuser, loggedIn: req.session.loggedIn})
+
         res.render('jobOrdersSP', {assignmentData, jobData, theuser, loggedIn: req.session.loggedIn})
       });    
   } 
+
   //----GET JOB DATA FOR CUSTOMER----//
   else {
     const dbJobData = Job.findAll({
@@ -118,63 +115,13 @@ router.get('/', (req, res) => {
     Promise.all([dbJobData])
       .then(([jData]) => {
       const jobData = jData.map(job => job.get({plain: true}));
-      console.log(jobData);
+
       res.render('jobOrdersC', {jobData, theuser, loggedIn: req.session.loggedIn})
     });    
   }
 });
 
-/*router.get('/assignment/:id', (req, res) => {
-  const theuser = req.session.username;
-  const isService = req.session.service_id;
-  Assignment.findOne({
-    where: {
-      id: req.params.id
-    },
-    include: [
-      {
-        model: User,
-        attributes: ['id', 'username'],
-        include: {
-          model: Service
-        }
-      },
-      {
-        model: Job,
-        include: [
-          {
-            model: Status
-          },
-          {
-            model: Rating,
-            attributes: ['id', 'points']
-          },
-          {
-            model: User,
-            attributes: ['id', 'username', 'email']
-          }
-        ]
-      }
-    ]
-  })
-  .then(dbAssignmentData => {
-    if(!dbAssignmentData) {
-      res.status(404).json({message: 'No service found with this id'});
-      return;
-    }
-    
-    const assignmentData = dbAssignmentData.get({plain: true});
-    const temp = assignmentData.job.job_text.split("\n");
-    assignmentData.job.job_text = temp;
-    console.log({assignmentData, theuser, isService, loggedIn: req.session.loggedIn})
-    res.render('single-assignment', {assignmentData, theuser, isService, loggedIn: req.session.loggedIn})
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err)
-  });
-});*/
-
+//----GET ONE JOB WITH ID----//
 router.get('/job/:id', (req, res) => {
   const theuser = req.session.username;
   const isService = req.session.service_id;
@@ -213,10 +160,15 @@ router.get('/job/:id', (req, res) => {
       res.status(404).json({message: 'No job found with this id'});
       return;
     }
+    //job data
     const jobData = dbJobData.get({plain: true});
+    //check if user in session has applied for the job
     let applied = false;
+    //check if the job application is approved
     let approval = false;
+    //Filter application for user in session
     let yourApplication = {};
+    //Forms paragraphs for job description
     const temp = jobData.job_text.split("\n");
     jobData.job_text = temp;
 
@@ -230,7 +182,7 @@ router.get('/job/:id', (req, res) => {
         yourApplication = assignment;
       };
     });
-    console.log({jobData, theuser, isService, applied, approval, yourApplication, loggedIn: req.session.loggedIn})
+
     res.render('single-job', {jobData, theuser, isService, applied, approval, yourApplication, loggedIn: req.session.loggedIn})
   })
   .catch(err => {

@@ -83,7 +83,6 @@ router.post('/', (req,res) => {
     });
   })
   .catch(err => {
-    console.log(err.errors[0].message)
     if (err.errors[0].message === "user.email must be unique") {
       res.status(404).json({message: "Email is already registered!"})
       return;
@@ -140,7 +139,6 @@ router.post('/logout', (req, res) => {
 
 //-----PUT - UPDATE USER-----//
 router.put('/:id', (req, res) => {
-  // expects {username: '', email: '', password: ''} format
   User.update(req.body, {
     individualHooks: true,
     where: {

@@ -26,6 +26,7 @@ router.get('/signup', (req, res) => {
     attributes: ['id', 'service_type']
   })
   .then(dbServiceData => {
+    //Get list of services
     const services = dbServiceData.map(service => service.get({ plain: true}));
     res.render('signup', {services});
   })
