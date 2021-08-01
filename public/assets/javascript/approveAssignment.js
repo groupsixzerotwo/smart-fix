@@ -1,7 +1,7 @@
 const approveAssignmentHandler = async (event) => {
   event.preventDefault();
   if (event.target.matches(".approveAssignmentBtn")) {
-    const order_number = event.target.closest('div').querySelector('.orderNumber').innerText
+    const order_number = event.target.closest('tr').querySelector('.orderNumber').innerText
     console.log(order_number)
     const assignData = await fetch(`/api/assignment/orderNum`, {
       method: 'POST',

@@ -6,8 +6,17 @@
   <div class="editDeleteBtn">
     <button class="backClick btn-floating btn-large transparent hoverable" title="Go Back"><i class="material-icons red-text">arrow_back</i></button>
     <div class="right">
-      <button class="jobEditBtn editAssignBtn btn-floating btn-large hoverable green" title="Edit"><i class="material-icons left">edit</i></button>
-      <button class="jobDeleteBtn deleteAssignBtn btn-floating btn-large hoverable red" title="Delete"><i class="material-icons left">delete</i>DELETE</button>
+      {{#if isService}}
+        {{#if applied}}
+          <button class="editAssignBtn btn-floating btn-large hoverable green" title="Edit"><i class="material-icons left">edit</i></button>
+          <button class="deleteAssignBtn btn-floating btn-large hoverable red" title="Delete"><i class="material-icons left">delete</i>DELETE</button>
+          <script src="/assets/javascript/assignmentEditDelete.js"></script>
+        {{/if}}
+      {{else}}
+        <button class="jobEditBtn btn-floating btn-large hoverable green" title="Edit"><i class="material-icons left">edit</i></button>
+        <button class="jobDeleteBtn btn-floating btn-large hoverable red" title="Delete"><i class="material-icons left">delete</i>DELETE</button>
+        <script src="/assets/javascript/editDeleteJob.js"></script>
+      {{/if}}
     </div>
   </div>
 
@@ -26,7 +35,7 @@
       <tr> 
         <td>
           {{#each jobData.job_text as |text|}}
-          {{text}}
+            <p>{{text}}</p>
           {{/each}}
         </td>
         <td>{{jobData.status.status_text}}</td>
@@ -134,8 +143,8 @@
           {{/if}}
         </td>
         <td>
-          {{#if yourApplication.completed_date}}
-          {{yourApplication.completed_date}}
+          {{#if yourApplication.complete_date}}
+          {{yourApplication.complete_date}}
           {{/if}}
         </td>
         <td>{{format_dates yourApplication.createdAt}}</td>
@@ -247,7 +256,7 @@
 <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE NOT APPROVED ANY ASSIGNMENT--->
 {{else}}
 
-<table class="centered card">
+<table class="centered card allApplicationList">
   <thead class="grey lighten-3">
     <tr>
       <th>Service Provider</th>
@@ -261,7 +270,7 @@
   <tbody>
     {{#if jobData.assignments}}
     {{#each jobData.assignments as |assignment|}}
-    <tr class="allApplicationList">
+    <tr>
       <td>{{assignment.user.username}}</td>
       <td>{{assignment.user.service.service_type}}</td>
       <td class="orderNumber">{{assignment.order_number}}</td>
@@ -286,6 +295,5 @@
   </div>
 
 
-<script src="/assets/javascript/editDeleteJob.js"></script>
-<script src="/assets/javascript/assignmentEditDelete.js"></script>
+<script src="/assets/javascript/editJobSubmit.js"></script>
 <script src="/assets/javascript/editAssignmentSubmit.js"></script>
