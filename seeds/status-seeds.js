@@ -5,7 +5,7 @@ const statusData = [
     status_text: 'Job Created'
   },
   {  
-    status_text: 'Pending User Input'
+    status_text: 'Accepting quotes'
   },
   {  
     status_text: 'Service Provider Confirmed'

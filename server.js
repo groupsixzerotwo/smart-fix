@@ -20,7 +20,7 @@ app.set('view engine', 'handlebars');
 
 const sess = {
   secret: 'This is the group project',
-  cookie: {maxAge: 360000000},
+  cookie: {maxAge: 3600000},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({

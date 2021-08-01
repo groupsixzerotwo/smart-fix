@@ -1,28 +1,33 @@
+//----HANDLES THE NEW APPLICATION TO A JOB LOGIC - IN SINGLE JOB PAGE----//
+
+//----DISPLAYS THE FORM WHEN APPLY BUTTON IS CLICKED----//
 const applyJobBtnHandler = (event) => {
   document.querySelector('.applyJobBtn').style.display = "none";
   document.querySelector('#applyJobForm').style.display = "block";
 }
 
+//----RELOADS THE PAGE WHEN CANCEL BUTTON IS CLICKED ON THE FORM----//
 const applyJobCancelBtnHandler = (event) => {
   event.preventDefault();
-  document.querySelector('#applyJobForm').style.display = "none";
-  document.querySelector('.applyJobBtn').style.display = "block";
+  document.location.reload();
 }
 
+//----HANDLES THE NEW APPLICATION SUBMIT BUTTON LOGIC----//
 const applyJobFormHandler = async (event) => {
   event.preventDefault();
+  //Get the cost input in the form
   const cost = document.querySelector('#assignmentCost').value.trim();
-  const order_number = document.querySelector('#assignmentOrderNo').value.trim();
+  //get job id
   let job_id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
   job_id = job_id.split('?')[0];
-  if (cost && order_number && job_id) {
+  //post cost to create new assignment
+  if (cost && job_id) {
     const response = await fetch('/api/assignment', {
       method: 'POST',
       body: JSON.stringify({
         cost,
-        order_number,
         job_id
       }),
       headers: {
@@ -30,6 +35,7 @@ const applyJobFormHandler = async (event) => {
       }
     });
 
+    //Auto updates the job status to id 2
     if (response.ok) {
       fetch(`/api/jobs/${job_id}`, {
         method: 'PUT',
@@ -46,7 +52,8 @@ const applyJobFormHandler = async (event) => {
       
     } 
     else {
-      document.querySelector('.alertMessage').textContent = "Please try again!";
+      //error message
+      document.querySelector('.alertMessage').textContent = "Cost must be a decimal. Please try again!";
       document.querySelector('.alertMessage').style.display = "block";
       setTimeout(function() { 
         document.querySelector('.alertMessage').style.display = "none"; 
@@ -54,7 +61,8 @@ const applyJobFormHandler = async (event) => {
     }
   }
   else {
-    document.querySelector('.alertMessage').textContent = "Cost and order number is required. Please try again!";
+    //error message
+    document.querySelector('.alertMessage').textContent = "Cost is required. Please try again!";
     document.querySelector('.alertMessage').style.display = "block";
     setTimeout(function() { 
       document.querySelector('.alertMessage').style.display = "none"; 

@@ -1,30 +1,75 @@
-<div class="container welcome grey lighten-1 white-text">
-  <h2>Service provider</h2>
-  <h2>Welcome {{theuser}}!</h2>
+<!--ORDER PAGE FOR SERVICE PROVIDERS-->
+<div class="container">
+  <h3 class="center">Welcome {{theuser}}!</h3>
+  <h4 class="right grey lighten-1 white-text">Service Provider</h4>
 </div>
-<div class="displayBox">  
-  <div class="row container spColumns">
-    <div class="col s4">
-      <h3>Job Assignments</h3>
+
+<div class="container">
+  <h4>Job Assignments</h3>
+  
+  <table class="centered highlight card">
+    <thead class="grey lighten-3">
+      <tr>
+        <th>Title</th>
+        <th>Applied Date</th>
+        <th>Status</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
+
+    <tbody>
       {{#each assignmentData as |assignment|}}
-        <div class="card-panel grey lighten-4">
+      <tr>
+        <td><a href="/orders/job/{{assignment.job.id}}">{{assignment.job.job_title}}</a></td>
+        <td>{{format_dates assignment.createdAt}}</td>
+        <td>{{getAssignStatus assignment}}</td>
+        <td>{{format_dates assignment.job.updated_at}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+    {{!-- <div class="card-panel grey lighten-4">
           <a class="light-blue-text lighten-3" href="/orders/job/{{assignment.job.id}}">{{assignment.job.job_title}}</a>
           <p class="black-text">Applied on {{format_dates assignment.createdAt}}</p>
-          <p class="black-text">Status - {{assignment.job.status.status_text}}</p>
+          <p class="black-text">Status - {{getAssignStatus assignment}}</p>
           <p class="black-text">Last updated - {{format_dates assignment.job.updated_at}}</p>
-        </div>
-      {{/each}}
-    </div>
-    <div class="col s8">
-      <h3>See all Jobs</h3>
+        </div> 
+  {{/each}} --}}
+
+  <h4>See all Jobs</h4>
+
+  <table class="centered highlight card">
+    <thead class="grey lighten-3">
+      <tr>
+        <th>Title</th>
+        <th>Created by</th>
+        <th>Created on</th>
+        <th>Status</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
+
+    <tbody>
       {{#each jobData as |job|}}
-        <div class="card-panel grey lighten-4">
+      <tr>
+        <td><a class="light-blue-text lighten-3" href="/orders/job/{{job.id}}">{{job.job_title}}</a></td>
+        <td>{{job.user.username}}</td>
+        <td>{{format_dates job.createdAt}}</td>
+        <td>{{job.status.status_text}}</td>
+        <td>{{format_dates job.updatedAt}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{!-- {{#each jobData as |job|}}
+    <div class="card-panel grey lighten-4">
           <a class="light-blue-text lighten-3" href="/orders/job/{{job.id}}">{{job.job_title}}</a>
           <p class="black-text">Created by {{job.user.username}} on {{format_dates job.createdAt}}</p>
           <p class="black-text">Status - {{job.status.status_text}}</p>
           <p class="black-text">Last updated - {{format_dates job.updatedAt}}</p>
         </div>
-      {{/each}}
+      {{/each}} --}}
     </div>
   </div>
 </div>

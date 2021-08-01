@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment, Job, Service, Status, Rating } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 //-----GET - FIND ALL USERS-----//
 router.get('/', (req, res) => {
@@ -83,8 +84,16 @@ router.post('/', (req,res) => {
     });
   })
   .catch(err => {
-    console.log(err);
-    res.status(500).json(err)
+    if (err.errors[0].message === "user.email must be unique") {
+      res.status(404).json({message: "Email is already registered!"})
+      return;
+    }
+    else if (err.errors[0].message === "Validation len on password failed") {
+      res.status(404).json({message: "Password must be atleast 8 digits!"})
+    }
+    else {
+      res.status(404).json({message: "Invalid input, please try again!"})
+    }
   });
 });
 
@@ -130,8 +139,7 @@ router.post('/logout', (req, res) => {
 });
 
 //-----PUT - UPDATE USER-----//
-router.put('/:id', (req, res) => {
-  // expects {username: '', email: '', password: ''} format
+router.put('/:id', withAuth, (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
