@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { User, Job, Service, Status, Rating, Assignment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 //-----GET - FIND ALL JOBS-----//
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
 
   Job.findAll({
     include: [
@@ -28,7 +29,7 @@ router.get('/', (req, res) => {
 });
 
 //-----GET - FIND ONE Job-----//
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
 
   Job.findOne({
     where: {
@@ -74,7 +75,7 @@ router.get('/:id', (req, res) => {
 });
 
 //-----POST - ADD A JOB-----//
-router.post('/', (req,res) => {
+router.post('/', withAuth, (req,res) => {
   Job.create({
     job_title: req.body.job_title,
     job_text: req.body.job_text,
@@ -98,7 +99,7 @@ router.post('/', (req,res) => {
 });
 
 //-----PUT - UPDATE A JOB-----//
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Job.update(req.body, {
     where: {
       id: req.params.id
@@ -124,7 +125,7 @@ router.put('/:id', (req, res) => {
 });
 
 //-----DELETE - DELETE JOB-----//
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   Job.destroy({
     where: {
       id: req.params.id

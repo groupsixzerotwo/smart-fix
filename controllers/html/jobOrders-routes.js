@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection')
 const { User, Service, Assignment, Job, Status, Rating } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
   const theuser = req.session.username;
   const isService = req.session.service_id;
   //const service = req.session.service_id;
@@ -122,7 +123,7 @@ router.get('/', (req, res) => {
 });
 
 //----GET ONE JOB WITH ID----//
-router.get('/job/:id', (req, res) => {
+router.get('/job/:id', withAuth, (req, res) => {
   const theuser = req.session.username;
   const isService = req.session.service_id;
   Job.findOne({

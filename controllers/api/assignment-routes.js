@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { User, Job, Service, Status, Rating, Assignment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 //-----GET - FIND ALL ASSIGNMENT-----//
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
   //Access assignment model and run .findAll() method
   Assignment.findAll({
     include: [
@@ -36,7 +37,7 @@ router.get('/', (req, res) => {
 });
 
 //-----GET - FIND ONE ASSIGNMENT-----//
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
   //Access assignment model and run .findAll() method
   Assignment.findOne({
     where: {
@@ -83,7 +84,7 @@ router.get('/:id', (req, res) => {
 });
 
 //-----POST - FIND ONE ASSIGNMENT WITH ORDER NUMBER-----//
-router.post('/orderNum', (req, res) => {
+router.post('/orderNum', withAuth, (req, res) => {
   Assignment.findOne({
     where: {
       order_number: req.body.order_number
@@ -103,7 +104,7 @@ router.post('/orderNum', (req, res) => {
   });
 });
 
-router.post('/delete', (req, res) => {
+router.post('/delete', withAuth, (req, res) => {
   Assignment.destroy({
     where: {
       order_number: req.body.order_number
@@ -123,7 +124,7 @@ router.post('/delete', (req, res) => {
 });
 
 //-----POST - ADD AN ASSIGNMENT-----//
-router.post('/', (req,res) => {
+router.post('/', withAuth, (req,res) => {
   Assignment.create({
     cost: req.body.cost,
     order_number: req.body.order_number,
@@ -141,7 +142,7 @@ router.post('/', (req,res) => {
 });
 
 //-----PUT - UPDATE A JOB-----//
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Assignment.update(req.body, {
     where: {
       id: req.params.id
@@ -161,7 +162,7 @@ router.put('/:id', (req, res) => {
 });
 
 //-----DELETE - DELETE JOB-----//
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   Assignment.destroy({
     where: {
       id: req.params.id
