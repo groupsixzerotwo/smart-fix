@@ -103,15 +103,11 @@ ul{
 }
 
 /*--BACK BUTTON--*/
-.backButton {
-  display: flex;
-  line-height: .1em;
-}
 
-.backClick {
+/* .backClick {
   display: flex;
   cursor: pointer;
-}
+} */
 
 .allAssignmentList {
   display: flex;
