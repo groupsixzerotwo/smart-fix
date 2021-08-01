@@ -1,15 +1,18 @@
+//----SUGNUP LOGIC____//
 async function signupFormHandler(event) {
   event.preventDefault();
 
   const username = document.querySelector('.username-signup').value.trim();
   const email = document.querySelector('.email-signup').value.trim();
   const password = document.querySelector('.password-signup').value.trim();
+  //check if service
   const sp = document.querySelector("input[name=serviceYesNo]:checked").value;
+  //capture service id - default null
   let service_id = null ;
   if (sp === "Yes") {
     service_id = document.querySelector("input[name=service-list]:checked").value;
   };
-
+  //Check all inputs are selected
   if (username && email && password && sp) {
     const response = await fetch('/api/users', {
       method: 'post',
@@ -27,8 +30,8 @@ async function signupFormHandler(event) {
       document.location.replace('/')
     } 
     else {
+      //error message
       response.text().then(text => {
-        console.log(text)
         document.querySelector('.loginAlert').textContent = text.split('"')[3];
         document.querySelector('.loginAlert').style.display = "block";
         setTimeout(function() { 
@@ -38,6 +41,7 @@ async function signupFormHandler(event) {
     }
   }
   else {
+    //error message
     document.querySelector('.loginAlert').textContent = "All fields are required. Please try again!!";
     document.querySelector('.loginAlert').style.display = "block";
     setTimeout(function() { 

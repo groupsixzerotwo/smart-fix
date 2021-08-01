@@ -1,9 +1,12 @@
+//----CANCEL EDIT ASSIGNMENT BUTTON LOGIC----//
+
 const editAssignCancelBtnHandler = (event) => {
   event.preventDefault();
   document.querySelector('.editDeleteBtn').style.display = "block";
   document.querySelector('#editAssignForm').style.display = "none";
 };
 
+//----GET ASSIGNMENT ID WITH ORDER NUMBER----//
 const getAssignmentId = async (order_number) => {
   const assignData = await fetch(`/api/assignment/orderNum`, {
     method: 'POST',
@@ -20,6 +23,7 @@ const getAssignmentId = async (order_number) => {
   }
 }
 
+//----EDIT ASSIGNMENT SUBMIT BUTTON----//
 const editAssignSubmitBtnHandler = async (event) => {
   event.preventDefault();
   const cost = document.querySelector('#assignEditCost').value;
@@ -27,22 +31,21 @@ const editAssignSubmitBtnHandler = async (event) => {
   const start_date = document.querySelector('#assignEditStartDate').value;
   const complete_date = document.querySelector('#assignEditCompleteDate').value;
   let assignObject = {}
-
+  if (!cost) {
+    document.querySelector('.alertMessage').textContent = "Cost cannot be empty. Please try again!";
+    document.querySelector('.alertMessage').style.display = "block";
+    setTimeout(function() { 
+      document.querySelector('.alertMessage').style.display = "none"; 
+    }, 3000);
+    return;
+  }
   if (!start_date && !complete_date) {
     assignObject = {cost, order_number};
   } else if (start_date && !complete_date) {
     assignObject = {cost, order_number, start_date};
-  } else if (start_date && complete_date) {
-    assignObject = {cost, order_number, start_date, complete_date};
   } else {
-    document.querySelector('.loginAlert').textContent = "Please enter both email and password!";
-    document.querySelector('.loginAlert').style.display = "block";
-    setTimeout(function() { 
-      document.querySelector('.loginAlert').style.display = "none"; 
-    }, 3000);
-    return;
+    assignObject = {cost, order_number, start_date, complete_date};
   }
-
 
   let job_id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
@@ -51,6 +54,7 @@ const editAssignSubmitBtnHandler = async (event) => {
 
   getAssignmentId(order_number)
     .then(async (data) => {
+      //Edit assignment data
       const response = await fetch(`/api/assignment/${data.id}`, {
         method: 'PUT',
         body: JSON.stringify(assignObject),
@@ -60,6 +64,8 @@ const editAssignSubmitBtnHandler = async (event) => {
       });
 
       let promiseArray =[response];
+      //Check if job status needs to be updated
+      //if complete date is filled, change job status to 5
       if (complete_date) {
         const jobEditData = await fetch(`/api/jobs/${job_id}`, {
           method: 'PUT',
@@ -72,6 +78,7 @@ const editAssignSubmitBtnHandler = async (event) => {
         });
 
         promiseArray.push(jobEditData);
+        //if start date date is filled, change job status to 4
       } else if (start_date && !complete_date) {
         const jobEditData = await fetch(`/api/jobs/${job_id}`, {
           method: 'PUT',
@@ -86,10 +93,26 @@ const editAssignSubmitBtnHandler = async (event) => {
         promiseArray.push(jobEditData);
       }
 
-      Promise.all(promiseArray).
-        then(dataArray => {
-          document.location.reload();
+      //Call all promises
+      const allPromise = Promise.all(promiseArray);
+        let promiseOk = true;
+        //pk check for each promise
+        (await allPromise).forEach(promise => {
+          if (!promise.ok) {
+            promiseOk = false;
+          }
         });
+        //Error message for promises
+        if (promiseOk) {
+          document.location.reload()
+        } else {
+          document.querySelector('.alertMessage').textContent = "Cost should be a decimal or number!";
+          document.querySelector('.alertMessage').style.display = "block";
+          setTimeout(function() { 
+            document.querySelector('.alertMessage').style.display = "none"; 
+          }, 3000);console.log(allPromise)
+        }
+
     });
   
 };

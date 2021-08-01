@@ -54,18 +54,18 @@ User.init(
   {
     //Hashing
     hooks: {
-      // set up beforeBulkCreate lifecycle "hook" functionality
+      // set up beforeBulkCreate lifecycle "hook" functionality to hash password
       async beforeBulkCreate(bulkUserData) {
         return Promise.all(bulkUserData.map(async (userData) => {
           userData.password = await bcrypt.hash(userData.password, 10);
         }));
       },
-      // set up beforeCreate lifecycle "hook" functionality
+      // set up beforeCreate lifecycle "hook" functionality to hash password
       async beforeCreate(newUserData) {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-      // set up beforeUpdate lifecycle "hook" functionality
+      // set up beforeUpdate lifecycle "hook" functionality to hash password
       async beforeUpdate(updatedUserData) {
         updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
         return updatedUserData;

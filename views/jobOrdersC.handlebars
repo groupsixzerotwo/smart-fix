@@ -1,3 +1,4 @@
+<!--ORDER PAGE FOR CUSTOMERS-->
 <div class="container">
   <button class="createJobBtn btn-large btn-floating green waves-effect waves-light right hoverable" title="Add New Job"><i class="material-icons left">add</i></button>
   <h3 class="center">Welcome {{theuser}}!</h3>
@@ -15,6 +16,7 @@
         <th>Last Updated</th>
       </tr>
     </thead>
+    <!--Get all jobs-->
     {{#each jobData as |job|}}
     <tbody>
       <tr>
@@ -27,7 +29,7 @@
     {{/each}}
   </table>
 </div>
-
+<!--Create new job-->
 <div class="row container">
   <div class="col s12">
     <div class="container" id="addNewJobForm">
