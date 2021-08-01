@@ -1,21 +1,13 @@
 <div class="container">
 
-  {{!-- <div class="editDeleteBtn">
-    <button class="backClick btn-floating transparent hoverable" title="Go Back"><i class="material-icons red-text">arrow_back</i></button>
-    <div class="right">
-    <button class="jobEditBtn btn-floating hoverable green" title="Edit"><i class="material-icons left">edit</i></button>
-    <button class="jobDeleteBtn btn-floating hoverable red" title="Delete"><i class="material-icons left">delete</i>DELETE</button>
-    </div>
-  </div> --}}
-
   <!---JOB DATA VIEW FOR ALL--->
   <h4 class="center grey white-text">{{jobData.job_title}}</h4>
 
   <div class="editDeleteBtn">
     <button class="backClick btn-floating btn-large transparent hoverable" title="Go Back"><i class="material-icons red-text">arrow_back</i></button>
     <div class="right">
-      <button class="jobEditBtn btn-floating btn-large hoverable green" title="Edit"><i class="material-icons left">edit</i></button>
-      <button class="jobDeleteBtn btn-floating btn-large hoverable red" title="Delete"><i class="material-icons left">delete</i>DELETE</button>
+      <button class="jobEditBtn editAssignBtn btn-floating btn-large hoverable green" title="Edit"><i class="material-icons left">edit</i></button>
+      <button class="jobDeleteBtn deleteAssignBtn btn-floating btn-large hoverable red" title="Delete"><i class="material-icons left">delete</i>DELETE</button>
     </div>
   </div>
 
@@ -31,7 +23,7 @@
     </thead>
 
     <tbody>
-      <tr>
+      <tr> 
         <td>
           {{#each jobData.job_text as |text|}}
           {{text}}
@@ -66,13 +58,13 @@
   </table>
 <!-- END OF JOB VIEW FOR ALL -->
 
-  <!---JOB DATA EDIT DELETE OPTION FOR THE CUSTOMER WHO CREATED IT---> 
-  {{#unless isService}}
+<!---JOB DATA EDIT DELETE OPTION FOR THE CUSTOMER WHO CREATED IT---> 
+{{#unless isService}}
 
-  <!---EDIT FORM FOR JOB--->
-  <div class="container" id="editJobForm">
-    <form class="editJobForm">
-      <button class="backClick btn-floating btn-large transparent hoverable" title="Go Back"><i class="material-icons red-text">arrow_back</i></button>
+<!---EDIT FORM FOR JOB--->
+<div class="container" id="editJobForm">
+  <form class="editJobForm">
+    <button class="backClick btn-floating btn-large transparent hoverable" title="Go Back"><i class="material-icons red-text">arrow_back</i></button>
 
       <div>
         <h5 class="blue-text center">Edit Job Request</h5>
@@ -98,15 +90,14 @@
         <button class="editJobCancelBtn btn red-text transparent" >Cancel</button>
       </div>
     </form>         
-  </div>
-  {{/unless}}
+</div>
+{{/unless}}
 
 
 <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER--->      
 {{#if isService}}
 <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF ALREADY APPLIED FOR THE JOB--->  
   {{#if applied}}
-  {{!-- <button class="backClick btn-floating btn-large transparent hoverable" title="Go Back"><i class="material-icons red-text">arrow_back</i></button> --}}
   <h5 class="blue-text center">Your Application</h5>
 
   <table class="centered card">
@@ -114,7 +105,7 @@
       <tr>
         <th>Quoted Cost</th>
         <th>Order Number</th>
-        {{!-- <th>Application Status</th> --}}
+        <th>Application Status</th>
         <th>Start Date</th>
         <th>Completed Date</th>
         <th>Applied On</th>
@@ -126,7 +117,17 @@
       <tr>
         <td>${{yourApplication.cost}}</td>
         <td class="AssignOrderNumber">{{yourApplication.order_number}}</td>
-        {{!-- <td></td> --}}
+        <td>
+          {{#if approval}}
+            {{#if yourApplication.approved_status}}
+              Application accepted!
+            {{else}}
+              Application rejected!  
+            {{/if}}
+          {{else}}
+                Job applied!
+          {{/if}}
+        </td>
         <td>
           {{#if yourApplication.start_date}}
           {{yourApplication.start_date}}
@@ -142,60 +143,18 @@
       </tr>
     </tbody>
   </table>
-{{!-- 
-          <ul>
-            <li><p><b>Quoted Cost: </b>${{yourApplication.cost}}</p></li>
-            <li><p><b>Order number: </b><span class="AssignOrderNumber">{{yourApplication.order_number}}</span></p></li>
-            <li class="col s12 center"><h6 class="blue-text">Application status - 
-              {{#if approval}}
-                {{#if yourApplication.approved_status}}
-                  Application accepted!
-                {{else}}
-                  Application rejected!  
-                {{/if}}
-              {{else}}
-                Job applied!
-              {{/if}}
-            </h6></li>
-            <li><p><b>Applied on: </b>{{format_dates yourApplication.createdAt}}</p></li>
-            <li><p><b>Last updated: </b>{{format_dates yourApplication.updatedAt}}</p></li>
-            {{#if yourApplication.start_date}}
-            <li class="col s12 center"><h6 class="blue-text">Job Status</h6></li>
-            <li>
-              <p><b>Started on: </b>{{yourApplication.start_date}}</p>
-            </li>
-            <li>
-              <p><b>Completed on: </b>{{yourApplication.complete_date}}</p>
-            </li>--}}
-            {{/if}}
-          </ul>
-        
-        </div>
 
-          <div class="editDeleteBtn center">
-            {{#if approval}}
-              {{#if yourApplication.approved_status}}
-                <button class="editAssignBtn btn green">EDIT</button>
-                <button class="deleteAssignBtn btn red" >DELETE</button>
-                <script src="/assets/javascript/assignmentEditDelete.js"></script>
-              {{/if}}
-            {{else}}
-              <button class="editAssignBtn btn green">EDIT</button>
-              <button class="deleteAssignBtn btn red" >DELETE</button>
-              <script src="/assets/javascript/assignmentEditDelete.js"></script>
-            {{/if}}
-          </div>
-          
-          <!---EDIT FORM FOR SERVICE PROVIDER IF THEY CREATED IT--->
-          <div class="container" id="editAssignForm">
-            <form class="editAssignForm">
-              <div>
-                <h5 class="blue-text center">Edit Job Request</h5>
-              </div>
-              <div>
-                <label for='assignEditCost'>COST: </label>
-                <input type='text' id='assignEditCost' />
-              </div>
+  <!---EDIT FORM FOR SERVICE PROVIDER IF THEY CREATED IT--->
+  <div class="container" id="editAssignForm">
+    <form class="editAssignForm">
+      <button class="backClick btn-floating btn-large transparent hoverable" title="Go Back"><i class="material-icons red-text">arrow_back</i></button>
+        <div>
+          <h5 class="blue-text center">Edit Job Request</h5>
+        </div>
+        <div>
+          <label for='assignEditCost'>COST: </label>
+          <input type='text' id='assignEditCost' />
+        </div>
               {{#if yourApplication.approved_status}}
               <div>
                 <label for='assignEditStartDate'>STARTED ON: </label>
@@ -220,8 +179,7 @@
                 <button class="editAssignCancelBtn btn red-text transparent" >Cancel</button>
               </div>
             </form>         
-          </div>
-          <script src="/assets/javascript/editAssignmentSubmit.js"></script>
+  </div>
 
 <!---ORDER PAGE APPLICATION VIEW FOR SERVICE PROVIDER IF NOT APPLIED FOR THE JOB--->
 {{else}}
@@ -236,10 +194,6 @@
                 <label for='assignmentCost'>COST: </label>
                 <input type='text' id='assignmentCost' />
               </div>
-              <!--<div>
-                <label for='assignmentOrderNo'>ORDER#: </label>
-                <input type='text' id='assignmentOrderNo' />
-              </div>-->
               <div>
                 <button class="applyJobSubmitBtn btn green" type="submit">Submit</button>
                 <button class="applyJobCancelBtn btn red-text transparent" >Cancel</button>
@@ -247,10 +201,10 @@
             </form>         
           </div>
           <script src="/assets/javascript/applyNewJob.js"></script>
-        {{/if}}
-
+{{/if}}
+          
 <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS---> 
-{{!-- {{else}} --}}
+{{else}}
 
 <h5 class="blue-text center">Application for the order</h5>
 
@@ -275,32 +229,24 @@
       <td class="orderNumber">{{assignment.user.service.service_type}}</td>
       <td>${{assignment.cost}}</td>
       <td>
+        {{#if assignments}}
+        <button class="approveAssignmentBtn btn green">APPROVE</button>
+        {{/if}}
         {{#if assignment.approved_status}}
         <button class="grey btn">ASSIGNED</button>
         {{else}}
         <button class="red btn">REJECTED</button>
         {{/if}}
+
       </td>
     </tr>
     {{/each}}
   </tbody>
 </table>
-          {{!-- <ul>
-          {{#each jobData.assignments as |assignment|}}
-            <li><p><b>Service provider: </b>{{assignment.user.username}}</p></li>
-            <li><p><b>Service type: </b>{{assignment.user.service.service_type}}</p></li>
-            <li><p><b>Order number: </b><span class="orderNumber">{{assignment.user.service.service_type}}</span></p></li>
-            <li><p><b>Cost: </b>${{assignment.cost}}</p></li>
-            {{#if assignment.approved_status}}
-            <li class="col s12 center"><button class="grey btn">ASSIGNED</button></li>
-            {{else}}
-            <li class="col s12 center"><button class="red btn">REJECTED</button></li>
-            {{/if}}
-          {{/each}}
-          </ul> --}}
 
 <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE NOT APPROVED ANY ASSIGNMENT--->
 {{else}}
+
 <table class="centered card">
   <thead class="grey lighten-3">
     <tr>
@@ -315,7 +261,7 @@
   <tbody>
     {{#if jobData.assignments}}
     {{#each jobData.assignments as |assignment|}}
-    <tr>
+    <tr class="allApplicationList">
       <td>{{assignment.user.username}}</td>
       <td>{{assignment.user.service.service_type}}</td>
       <td class="orderNumber">{{assignment.order_number}}</td>
@@ -333,52 +279,13 @@
   <script src="/assets/javascript/approveAssignment.js"></script>
   {{/if}}
 {{/if}}
-        {{!-- <ul>
-        <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE APPROVED ANY ASSIGNMENT--->
-        {{#if approval}}
-          <ul class="allApplicationList">
-          {{#each jobData.assignments as |assignment|}}
-            <div class="allAssignmentList">
-              <li><p><b>Service provider: </b>{{assignment.user.username}}</p></li>
-              <li><p><b>Service type: </b>{{assignment.user.service.service_type}}</p></li>
-              <li><p><b>Order number: </b><span class="orderNumber">{{assignment.order_number}}</span></p></li>
-              <li><p><b>Cost: </b>${{assignment.cost}}</p></li>
-              {{#if assignment.approved_status}}
-              <li class="col s12 center"><button class="grey btn">ASSIGNED</button></li>
-              {{else}}
-              <li class="col s12 center"><button class="red btn">REJECTED</button></li>
-              {{/if}}
-            </div>
-          {{/each}}
-          </ul>
-        <!---ORDER PAGE APPLICATION VIEW FOR CUSTOMERS IF THEY HAVE NOT APPROVED ANY ASSIGNMENT--->
-        {{else}}
-      
-        <ul class="allApplicationList">
-          {{#each jobData.assignments as |assignment|}}
-            <div class="allAssignmentList">
-              <li><p><b>Service provider: </b>{{assignment.user.username}}</p></li>
-              <li><p><b>Service type: </b>{{assignment.user.service.service_type}}</p></li>
-              <li><p><b>Order number: </b><span class="orderNumber">{{assignment.order_number}}</span></p></li>
-              <li><p><b>Cost: </b>${{assignment.cost}}</p></li>
-              <li class="col s12 center"><button class="approveAssignmentBtn btn green">APPROVE</button></li>
-            </div> 
-          {{/each}}
-        </ul>
-          {{#if jobData.assignments}}
-          <script src="/assets/javascript/approveAssignment.js"></script>
-          {{/if}}
-          {{/if}} --}}
-        {{!-- {{/if}} --}}
         
-        
-      {{!-- {{/if}} --}}
+      {{/if}}
       <p class="alertMessage"></p>
       <script src="/assets/javascript/backClick.js"></script>
-    </div>
   </div>
-</div>
 
 
 <script src="/assets/javascript/editDeleteJob.js"></script>
-<script src="/assets/javascript/editDeleteAssignment.js"></script>
+<script src="/assets/javascript/assignmentEditDelete.js"></script>
+<script src="/assets/javascript/editAssignmentSubmit.js"></script>
