@@ -83,7 +83,7 @@ router.get('/:id', (req, res) => {
 });
 
 //-----POST - FIND ONE ASSIGNMENT WITH ORDER NUMBER-----//
-router.post('/approve', (req, res) => {
+router.post('/orderNum', (req, res) => {
   Assignment.findOne({
     where: {
       order_number: req.body.order_number
@@ -111,7 +111,7 @@ router.post('/delete', (req, res) => {
   })
   .then(dbAssignmentData => {
     if (!dbAssignmentData) {
-      res.status(404).json({ message: 'No job found with this oder number' });
+      res.status(404).json({ message: 'No job found with this order number' });
       return;
     }
     res.json(dbAssignmentData);
@@ -130,6 +130,7 @@ router.post('/', (req,res) => {
     start_date: req.body.start_date,
     complete_date: req.body.complete_date,
     job_id: req.body.job_id,
+    //user_id: req.body.user_id
     user_id: req.session.user_id
   })
   .then(dbAssignmentData => res.json(dbAssignmentData))

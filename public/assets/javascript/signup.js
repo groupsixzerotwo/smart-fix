@@ -25,12 +25,16 @@ async function signupFormHandler(event) {
     // check the response status
     if (response.ok) {
       document.location.replace('/')
-    } else {
-      document.querySelector('.loginAlert').textContent = "Invalid input. Please try again!!";
-      document.querySelector('.loginAlert').style.display = "block";
-      setTimeout(function() { 
-        document.querySelector('.loginAlert').style.display = "none"; 
-      }, 3000);
+    } 
+    else {
+      response.text().then(text => {
+        console.log(text)
+        document.querySelector('.loginAlert').textContent = text.split('"')[3];
+        document.querySelector('.loginAlert').style.display = "block";
+        setTimeout(function() { 
+          document.querySelector('.loginAlert').style.display = "none"; 
+        }, 3000);
+      });
     }
   }
   else {
