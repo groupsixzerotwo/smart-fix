@@ -108,7 +108,7 @@ Testing is not available.
 * [Abhishek Jamwal](https://github.com/jamwalab)
 * [Sonali Pandey](https://github.com/sonali-pandey)
 * [Don Seneviratna](https://github.com/DonNavinS)
-* [Rabeea Jahangir]()
+* [Rabeea Jahangir](https://github.com/rabeeajahangir)
 * [Sudhanshu Batra](https://github.com/sudbatra)
 * [Marta N](https://github.com/martaniz).
 
