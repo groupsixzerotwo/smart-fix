@@ -11,6 +11,7 @@ Smart-Fix is a full-stack web application that is an on-demand, solutions-based 
 * [Motivation](#motivation)
 * [Usage](#usage)
 * [Tests](#tests)
+* [Future Development](#future-development)
 * [Packages](#packages)
 * [Created By](#created-by)
 
@@ -90,6 +91,14 @@ All orders go through a series of steps from creation to being marked as complet
 
 ## Tests:
 Testing is not available.
+
+## Future Development
+* Forums where users can discuss their issues:
+ * All users will be able to create posts and add comments to discuss their issues.
+
+* Ratings
+ * Once a job is completed, customer can rate the service provider based on the job done.
+ * Rating for the service provider will be stored and visible to the customer.
 
 ## Packages:
 
